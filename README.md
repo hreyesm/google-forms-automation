@@ -4,7 +4,7 @@ A generic Cypress script useful for filling out Google Forms automatically.
 ### Author
 [Héctor Reyes](https://github.com/hreyesm)
 
-## Table of Contents
+## Contents
 * [Overview](#overview)
 * [Installation](#installation)
   * [Requirements](#requirements)
