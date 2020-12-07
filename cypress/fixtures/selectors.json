@@ -1,0 +1,9 @@
+{
+    "multipleChoice": ".exportOuterCircle",
+    "checkbox": ".exportInnerBox",
+    "input": "input",
+    "paragraph": "textarea",
+    "timeInputs": ".freebirdFormviewerComponentsQuestionTimeTimeInputs",
+    "timeNumber": ".freebirdFormviewerComponentsQuestionTimeNumberEdit",
+    "gridCell": ".freebirdFormviewerComponentsQuestionGridCell"
+}

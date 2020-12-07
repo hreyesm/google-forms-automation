@@ -1,0 +1,22 @@
+{
+  "name": "google-forms-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hreyesm/google-forms-automation.git"
+  },
+  "author": "Héctor Reyes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hreyesm/google-forms-automation/issues"
+  },
+  "homepage": "https://github.com/hreyesm/google-forms-automation#readme",
+  "dependencies": {
+    "cypress": "^6.0.1"
+  }
+}
