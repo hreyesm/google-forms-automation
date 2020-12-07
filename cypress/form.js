@@ -27,22 +27,18 @@ export default class Form {
   fillQuestion(answer) {
     switch (answer.type) {
       case "shortAnswer":
+      case "date":
         this.type("input", answer.value.toString());
         break;
       case "paragraph":
         this.type("paragraph", answer.value.toString());
         break;
-      case "date":
-        this.type("input", answer.value.toString());
-        break;
       case "time":
         this.fillTime(answer.value.toString());
         break;
       case "multipleChoice":
+      case "linearScale":
         this.fillMultipleChoice(answer.choice);
-        break;
-      case "checkbox":
-        this.fillCheckbox(answer.choices);
         break;
       case "linearScale":
         this.fillMultipleChoice(answer.choice);
@@ -50,38 +46,30 @@ export default class Form {
       case "multipleChoiceGrid":
         this.fillMultipleChoiceGrid(answer.choices);
         break;
+      case "checkbox":
+        this.fillCheckbox(answer.choices);
+        break;
       case "checkboxGrid":
         this.fillCheckboxGrid(answer.choices);
         break;
     }
   }
 
-  type(type, value) {
-    if (type == "input") {
-      cy.get(this.selectors.input).type(value);
-    } else if (type == "paragraph") {
-      cy.get(this.selectors.paragraph).type(value);
-    }
+  click(type) {
+    cy.get(this.selectors[type]).click();
   }
 
-  click(type) {
-    if (type == "multipleChoice") {
-      cy.get(this.selectors.multipleChoice).click();
-    } else if (type == "checkbox") {
-      cy.get(this.selectors.checkbox).click();
-    }
+  type(type, value) {
+    cy.get(this.selectors[type]).type(value);
   }
 
   fillTime(input) {
-    let time = input.split(".");
+    const time = input.split(".");
     cy.get(this.selectors.timeInputs)
       .children(this.selectors.timeNumber)
-      .then((children) => {
-        cy.get(children[0]).within(() => {
-          this.type("input", time[0]);
-        });
-        cy.get(children[1]).within(() => {
-          this.type("input", time[1]);
+      .each((child, index) => {
+        cy.get(child).within(() => {
+          this.type("input", time[index]);
         });
       });
   }
@@ -89,6 +77,17 @@ export default class Form {
   fillMultipleChoice(choice) {
     cy.contains(choice).within(() => {
       this.click("multipleChoice");
+    });
+  }
+
+  fillMultipleChoiceGrid(choices) {
+    const cols = this.mapColumns(choices.length);
+    choices.forEach((choice) => {
+      cy.contains(choice.row)
+        .parent()
+        .within(() => {
+          this.fillGrid("multipleChoice", cols, choice.column);
+        });
     });
   }
 
@@ -100,34 +99,8 @@ export default class Form {
     });
   }
 
-  fillMultipleChoiceGrid(choices) {
-    let cols;
-    cy.contains(choices[0].row)
-      .parent()
-      .parent()
-      .prev()
-      .children(this.selectors.gridCell)
-      .then((children) => {
-        cols = this.mapColumns(children, choices.length);
-      });
-    choices.forEach((choice) => {
-      cy.contains(choice.row)
-        .parent()
-        .within(() => {
-          this.fillGrid("multipleChoice", cols, choice.column);
-        });
-    });
-  }
-
   fillCheckboxGrid(choices) {
-    let cols;
-    cy.contains(choices[0].row)
-      .parent()
-      .prev()
-      .children(this.selectors.gridCell)
-      .then((children) => {
-        cols = this.mapColumns(children, choices.length);
-      });
+    const cols = this.mapColumns(choices.length);
     choices.forEach((choice) => {
       cy.contains(choice.row)
         .parent()
@@ -139,11 +112,15 @@ export default class Form {
     });
   }
 
-  mapColumns(children, n) {
+  mapColumns(n) {
     let cols = {};
-    for (let i = 1; i <= n; i++) {
-      cols[children[i].outerText] = i;
-    }
+    cy.get(this.selectors.gridColumnHeader)
+      .children(this.selectors.gridCell)
+      .then((children) => {
+        for (let i = 1; i <= n; i++) {
+          cols[children[i].outerText] = i;
+        }
+      });
     return cols;
   }
 

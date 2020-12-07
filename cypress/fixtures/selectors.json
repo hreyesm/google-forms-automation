@@ -5,5 +5,6 @@
     "paragraph": "textarea",
     "timeInputs": ".freebirdFormviewerComponentsQuestionTimeTimeInputs",
     "timeNumber": ".freebirdFormviewerComponentsQuestionTimeNumberEdit",
+    "gridColumnHeader": ".freebirdFormviewerComponentsQuestionGridColumnHeader",
     "gridCell": ".freebirdFormviewerComponentsQuestionGridCell"
 }
