@@ -1,2 +1,2 @@
 # Google Forms Automation
-A generic script useful for filling out Google forms automatically. Implemented in Javascript using Cypress.
+A generic script useful for filling out Google Forms automatically. Implemented in Javascript using Cypress.
