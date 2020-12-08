@@ -16,7 +16,8 @@
     "url": "https://github.com/hreyesm/google-forms-automation/issues"
   },
   "homepage": "https://github.com/hreyesm/google-forms-automation#readme",
-  "dependencies": {
-    "cypress": "^6.0.1"
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^6.1.0"
   }
 }

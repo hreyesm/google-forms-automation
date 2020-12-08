@@ -1,4 +1,4 @@
-import Form from "../form";
+import GoogleFormsAutomation from "../google-forms-automation";
 
 describe("Google Forms Automation", () => {
   before(() => {
@@ -8,7 +8,7 @@ describe("Google Forms Automation", () => {
   });
 
   it("Example", () => {
-    const form = new Form("selectors");
-    form.fill("example");
+    const googleFormsAutomation = new GoogleFormsAutomation();
+    googleFormsAutomation.fillForm("example");
   });
 });

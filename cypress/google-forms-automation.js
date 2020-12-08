@@ -1,11 +1,11 @@
-export default class Form {
-  constructor(fixture) {
-    cy.fixture(fixture).then((selectors) => {
+export default class GoogleFormsAutomation {
+  constructor() {
+    cy.fixture("selectors").then((selectors) => {
       this.selectors = selectors;
     });
   }
 
-  fill(fixture) {
+  fillForm(fixture) {
     cy.fixture(fixture).then((form) => {
       form.questions.forEach((question) => {
         cy.contains(question.title)
@@ -16,9 +16,7 @@ export default class Form {
             this.fillQuestion(question.answer);
           });
         if (question.sectionEnd) {
-          cy.contains("Siguiente").click();
-        } else if (question.formEnd) {
-          cy.contains("Enviar").click();
+          this.nextSection();
         }
       });
     });
@@ -56,7 +54,15 @@ export default class Form {
   }
 
   click(type) {
-    cy.get(this.selectors[type]).click();
+    cy.get(this.selectors[type])
+      .click()
+      .then((field) => {
+        if (type == "multipleChoice") {
+          cy.get(field).parent().parent().should("have.class", "isChecked");
+        } else if (type == "checkbox") {
+          cy.get(field).parent().should("have.class", "isChecked");
+        }
+      });
   }
 
   type(type, value) {
@@ -129,6 +135,18 @@ export default class Form {
       .eq(cols[c])
       .within(() => {
         this.click(type);
+      });
+  }
+
+  nextSection() {
+    cy.get(this.selectors.buttons)
+      .children()
+      .then((children) => {
+        if (children.length == 1) {
+          cy.get(children[0]).click();
+        } else {
+          cy.get(children[1]).click();
+        }
       });
   }
 }

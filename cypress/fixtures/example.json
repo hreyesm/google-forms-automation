@@ -21,16 +21,16 @@
       "answer": {
         "type": "multipleChoice",
         "choice": "Option 1"
-      }
+      },
+      "sectionEnd": true
     },
 
     {
       "title": "Checkbox",
       "answer": {
         "type": "checkbox",
-        "choices": ["Option 1", "Option 3"]
-      },
-      "sectionEnd": true
+        "choices": ["Option 1"]
+      }
     },
 
     {
@@ -38,7 +38,8 @@
       "answer": {
         "type": "linearScale",
         "choice": "1"
-      }
+      },
+      "sectionEnd": true
     },
 
     {
@@ -104,8 +105,7 @@
       "answer": {
         "type": "time",
         "value": "00.00"
-      },
-      "formEnd": true
+      }
     }
   ]
 }
