@@ -29,7 +29,7 @@
       "title": "Checkbox",
       "answer": {
         "type": "checkbox",
-        "choices": ["Option 1"]
+        "choices": ["Option 1", "Option 3"]
       }
     },
 

@@ -54,15 +54,7 @@ export default class GoogleFormsAutomation {
   }
 
   click(type) {
-    cy.get(this.selectors[type])
-      .click()
-      .then((field) => {
-        if (type == "multipleChoice") {
-          cy.get(field).parent().parent().should("have.class", "isChecked");
-        } else if (type == "checkbox") {
-          cy.get(field).parent().should("have.class", "isChecked");
-        }
-      });
+    cy.get(this.selectors[type]).click();
   }
 
   type(type, value) {
@@ -142,11 +134,8 @@ export default class GoogleFormsAutomation {
     cy.get(this.selectors.buttons)
       .children()
       .then((children) => {
-        if (children.length == 1) {
-          cy.get(children[0]).click();
-        } else {
-          cy.get(children[1]).click();
-        }
+        cy.get(children[children.length - 1]).click();
       });
+    cy.wait(3000);
   }
 }
