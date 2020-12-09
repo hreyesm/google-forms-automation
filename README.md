@@ -5,7 +5,7 @@ A generic Cypress script that fills out Google Forms automatically.
 [Héctor Reyes](https://github.com/hreyesm)
 
 ## Demo
-![gfa](./img/gfa.gif)
+![Demo](./img/demo.gif)
 
 ## Contents
 * [Overview](#overview)
