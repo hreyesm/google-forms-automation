@@ -1,14 +1,17 @@
 import GoogleFormsAutomation from "../google-forms-automation";
 
 describe("Google Forms Automation", () => {
+  let gfa;
+  const form = Cypress.env("form");
+  const n = Cypress.env("n");
+
   before(() => {
-    cy.visit(
-      "https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform"
-    );
+    gfa = new GoogleFormsAutomation();
   });
 
-  it("Example", () => {
-    const googleFormsAutomation = new GoogleFormsAutomation();
-    googleFormsAutomation.fillForm("example");
-  });
+  for (let i = 1; i <= n; i++) {
+    it("Iteration " + i, () => {
+      gfa.fillForm(form);
+    });
+  }
 });

@@ -7,6 +7,7 @@ export default class GoogleFormsAutomation {
 
   fillForm(fixture) {
     cy.fixture(fixture).then((form) => {
+      cy.visit(form.url);
       form.questions.forEach((question) => {
         cy.contains(question.title)
           .parent()
@@ -16,6 +17,9 @@ export default class GoogleFormsAutomation {
             this.fillQuestion(question.answer);
           });
         if (question.sectionEnd) {
+          this.nextSection();
+          cy.wait(100);
+        } else if (question.formEnd) {
           this.nextSection();
         }
       });
@@ -136,6 +140,5 @@ export default class GoogleFormsAutomation {
       .then((children) => {
         cy.get(children[children.length - 1]).click();
       });
-    cy.wait(3000);
   }
 }
