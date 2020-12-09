@@ -4,6 +4,9 @@ A generic JavaScript/Cypress script that fills out Google Forms automatically.
 ### Author
 [Héctor Reyes](https://github.com/hreyesm)
 
+## Demo
+![gfa](./img/gfa.gif)
+
 ## Contents
 * [Overview](#overview)
 * [Installation](#installation)
