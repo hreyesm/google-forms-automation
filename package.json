@@ -1,7 +1,7 @@
 {
   "name": "google-forms-automation",
   "version": "1.0.0",
-  "description": "A generic JavaScript/Cypress script that fills out Google Forms automatically.",
+  "description": "A generic Cypress script that fills out Google Forms automatically.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
