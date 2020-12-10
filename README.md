@@ -25,6 +25,7 @@ A generic script that fills out Google Forms automatically.
     - [JSON File Format](#json-file-format)
       - [URL](#url)
       - [Questions](#questions)
+      - [Section End and Form End](#section-end-and-form-end)
     - [Graphical View](#graphical-view)
     - [Command Line View](#command-line-view)
   - [License](#license)
@@ -83,7 +84,7 @@ The general structure of a JSON file supported by the script looks like the foll
 ```json
 {
   "url": "Form URL",
-  "questions": [...]
+  "questions": [ ... ]
 }
 ```
 
@@ -224,33 +225,27 @@ The format of the questions to be included in the JSON file will vary depending 
     }
   }
   ```
-  
+
 #### Section End and Form End
 
-To tell the script to go to the next section on a form, simply add a `"sectionEnd"` key to the last question in a section, as in the following example:
+To instruct the script to go to the next section of a form, simply add a `"sectionEnd"` flag to the last question in a section:
 
 ```json
 {
-  "title": "Linear Scale",
-  "answer": {
-    "type": "linearScale",
-    "choice": "1"
-  },
+  "title": "Question title",
+  "answer": { ... },
   "sectionEnd": true
 }
 ```
 
-Likewise, to tell the script to submit the form, add a `"formEnd"` key to the last question in the form:
+Similarly, to instruct the script to submit the form, add a `"formEnd"` flag to the last question in the form:
 
 ```json
-    {
-      "title": "Time",
-      "answer": {
-        "type": "time",
-        "value": "00:00"
-      },
-      "formEnd": true
-    }
+{
+  "title": "Question title",
+  "answer": { ... },
+  "formEnd": true
+}
 ```
 
 The [example.json](./cypress/fixtures/example.json) file included in this repository should give you a good idea on how to structure the form data.
