@@ -54,7 +54,12 @@ npx cypress open --env form=<name of the JSON file preloaded with data>,n=<numbe
 ```
 
 If successful, the command should open a window similar to this:
+![Cypress Test Runner](./img/cypress-test-runner.jpg)
 
+Then click on the "google-forms-automation.spec.js" file. A browser window like the one below should open:
+![Browser](./img/browser.jpg)
+
+The script should start running shortly after.
 
 ## License
 The code of this repository was implemented by [Héctor Reyes](https://github.com/hreyesm). Released under the [MIT license](./LICENSE).
