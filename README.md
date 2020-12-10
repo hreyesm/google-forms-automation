@@ -50,6 +50,24 @@ After cloning the repository and moving to the root directory, enter the command
 ## Usage
 
 ### JSON File Structure
+The [example.json](./cypress/fixtures/example.json) file included in this repository is structured in such a way that the script runs without errors. For a JSON file to work properly, it must be created according to the following guidelines.
+
+#### URL
+```json
+"url": "https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform"
+```
+
+#### Questions
+* **Short Answer**
+  ```json
+  {
+      "title": "Short Answer",
+      "answer": {
+        "type": "shortAnswer",
+        "value": "Lorem ipsum."
+      }
+  }
+  ```
 
 ### Graphical View
 From the root directory, enter the following command to open the graphical Cypress Test Runner:
