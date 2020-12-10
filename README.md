@@ -20,7 +20,7 @@ A generic script that fills out Google Forms automatically.
 JavaScript / Cypress script that fills out Google Forms automatically.
 
 ### Features
-* Graphical and command line preview modes.
+* Graphical and command line view modes.
 * Forms are filled out the desired number of times from a JSON file preloaded with data.
 * Support for multi-section forms with the following question types (dropdown is not supported):
   * Short answer
@@ -47,20 +47,21 @@ After cloning the repository and moving to the root directory, enter the command
 
 ## Usage
 
-### Graphical Preview Mode
+### Graphical View Mode
 From the root directory, enter the following command to open the Cypress Test Runner:
 ```
-npx cypress open --env form=<name of the JSON file preloaded with data>,n=<number of times to fill out the form>
+npx cypress open -e form=<name of JSON file with form data>,n=<# of iterations>
 ```
+For example, if you wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, then you would enter the command as follows:
+![](./img/open.jpg)
 
 If successful, the command should open a window similar to this:
 ![](./img/test-runner.jpg)
 
-Then click on the "google-forms-automation.spec.js" file. A Chrome window like the one below should open:
-![](./img/loading.jpg)
+After that, click on the displayed **google-forms-automation.spec.js** file. A Chrome window like the one below should open:
+![](./img/chrome.jpg)
 
 The script should start running shortly after.
-![](./img/chrome.jpg)
 
 ## License
 The code of this repository was implemented by [Héctor Reyes](https://github.com/hreyesm). Released under the [MIT license](./LICENSE).
