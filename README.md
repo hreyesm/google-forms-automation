@@ -71,7 +71,7 @@ The [example.json](./cypress/fixtures/example.json) file included in this reposi
 
 #### Questions
 
-- Short Answer
+- **Short Answer**
 
   ```json
   {
