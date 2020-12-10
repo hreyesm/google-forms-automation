@@ -17,7 +17,7 @@ A generic script that fills out Google Forms automatically.
 - [Installation](#installation)
   - [Requirements](#requirements)
 - [Usage](#usage)
-  - [JSON File Structure](#json-file-structure)
+  - [JSON File Format](#json-file-format)
     - [URL](#url)
     - [Questions](#questions)
   - [Graphical View](#graphical-view)
@@ -59,9 +59,11 @@ After cloning the repository and moving to the root directory, enter the command
 
 ## Usage
 
-### JSON File Structure
+### JSON File Format
 
-For a JSON file to work properly, it must be created according to the following guidelines.
+For a JSON file to work properly, it must be formatted according to the following guidelines. Please note that the files corresponding to the forms to be completed will only be read if they are inside the [fixtures](./cypress/fixtures) directory; otherwise the script will not recognize them.
+
+#### Location
 
 #### URL
 
