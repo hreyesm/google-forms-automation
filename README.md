@@ -12,18 +12,22 @@ A generic script that fills out Google Forms automatically.
 
 ## Contents
 
-- [Overview](#overview)
-  - [Features](#features)
-- [Installation](#installation)
-  - [Requirements](#requirements)
-- [Usage](#usage)
-  - [JSON File Location](#json-file-location)
-  - [JSON File Format](#json-file-format)
-    - [URL](#url)
-    - [Questions](#questions)
-  - [Graphical View](#graphical-view)
-  - [Command Line View](#command-line-view)
-- [License](#license)
+- [Google Forms Automation](#google-forms-automation)
+    - [Author](#author)
+  - [Demo](#demo)
+  - [Contents](#contents)
+  - [Overview](#overview)
+    - [Features](#features)
+  - [Installation](#installation)
+    - [Requirements](#requirements)
+  - [Usage](#usage)
+    - [JSON File Location](#json-file-location)
+    - [JSON File Format](#json-file-format)
+      - [URL](#url)
+      - [Questions](#questions)
+    - [Graphical View](#graphical-view)
+    - [Command Line View](#command-line-view)
+  - [License](#license)
 
 ## Overview
 
@@ -69,31 +73,38 @@ JSON files corresponding to the forms to be filled out will only be processed if
 ┣ 📂 cypress
 ┃ ┣ 📂 fixtures
 ┃ ┃ ┣ 📂 forms
-┃ ┃ ┃ ┗ 📜 example.json 
+┃ ┃ ┃ ┗ 📜 example.json
 ```
 
 ### JSON File Format
 
 The general structure of a JSON file supported by the script looks like the following:
 
+```json
+{
+  "url": "Form URL",
+  "questions": [...]
+}
+```
+
 For a JSON file to work properly, it must be formatted according to the following guidelines.
 
 #### URL
 
-```json
-"url": "https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform"
-```
+Due to how Cypress redirects to web pages, the URLs to be included in the file should not be abbreviated. A valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
 
 #### Questions
+
+The format of the questions to be included in the file will vary depending on the content of their respective answers.
 
 - **Short Answer**
 
   ```json
   {
-    "title": "Short Answer",
+    "title": "Question title",
     "answer": {
       "type": "shortAnswer",
-      "value": "Lorem ipsum."
+      "value": "Value to fill"
     }
   }
   ```
@@ -102,10 +113,10 @@ For a JSON file to work properly, it must be formatted according to the followin
 
   ```json
   {
-    "title": "Paragraph",
+    "title": "Question title",
     "answer": {
       "type": "paragraph",
-      "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      "value": "Value to fill"
     }
   }
   ```
@@ -114,22 +125,22 @@ For a JSON file to work properly, it must be formatted according to the followin
 
   ```json
   {
-    "title": "Multiple Choice",
+    "title": "Question title",
     "answer": {
       "type": "multipleChoice",
-      "choice": "Option 1"
+      "choice": "Option to select"
     }
   }
   ```
 
-- **Checkbox**
+- **Checkboxes**
 
   ```json
   {
-    "title": "Checkbox",
+    "title": "Question title",
     "answer": {
-      "type": "checkbox",
-      "choices": ["Option 1", "Option 3"]
+      "type": "checkboxes",
+      "choices": ["Option to select", ..., "Option to select"]
     }
   }
   ```
@@ -138,10 +149,10 @@ For a JSON file to work properly, it must be formatted according to the followin
 
   ```json
   {
-    "title": "Linear Scale",
+    "title": "Question title",
     "answer": {
       "type": "linearScale",
-      "choice": "1"
+      "choice": "Option to select"
     }
   }
   ```
@@ -150,25 +161,18 @@ For a JSON file to work properly, it must be formatted according to the followin
 
   ```json
   {
-    "title": "Multiple Choice Grid",
+    "title": "Question title",
     "answer": {
       "type": "multipleChoiceGrid",
       "choices": [
         {
-          "row": "Row 1",
-          "column": "Column 1"
+          "row": "Row title",
+          "column": "Option to select"
         },
+        ...,
         {
-          "row": "Row 2",
-          "column": "Column 2"
-        },
-        {
-          "row": "Row 3",
-          "column": "Column 3"
-        },
-        {
-          "row": "Row 4",
-          "column": "Column 4"
+          "row": "Row title",
+          "column": "Option to select"
         }
       ]
     }
@@ -179,25 +183,18 @@ For a JSON file to work properly, it must be formatted according to the followin
 
   ```json
   {
-    "title": "Checkbox Grid",
+    "title": "Question title",
     "answer": {
       "type": "checkboxGrid",
       "choices": [
         {
-          "row": "Row 1",
-          "columns": ["Column 1"]
+          "row": "Row title",
+          "columns": ["Option to select", ..., "Option to select"]
         },
+        ...,
         {
-          "row": "Row 2",
-          "columns": ["Column 1", "Column 2"]
-        },
-        {
-          "row": "Row 3",
-          "columns": ["Column 1", "Column 2", "Column 3"]
-        },
-        {
-          "row": "Row 4",
-          "columns": ["Column 1", "Column 2", "Column 3", "Column 4"]
+          "row": "Row title",
+          "columns": ["Option to select", ..., "Option to select"]
         }
       ]
     }
@@ -208,10 +205,10 @@ For a JSON file to work properly, it must be formatted according to the followin
 
   ```json
   {
-    "title": "Date",
+    "title": "Question title",
     "answer": {
       "type": "date",
-      "value": "2020-01-01"
+      "value": "YYYY-MM-DD"
     }
   }
   ```
@@ -220,15 +217,14 @@ For a JSON file to work properly, it must be formatted according to the followin
 
   ```json
   {
-    "title": "Time",
+    "title": "Question title",
     "answer": {
       "type": "time",
-      "value": "00.00"
-    },
-    "formEnd": true
+      "value": "HH:MM"
+    }
   }
   ```
-  
+
 The [example.json](./cypress/fixtures/example.json) file included in this repository should give you a good idea on how to structure the form data.
 
 ### Graphical View
@@ -236,7 +232,7 @@ The [example.json](./cypress/fixtures/example.json) file included in this reposi
 From the root directory, enter the following command to open the graphical Cypress Test Runner:
 
 ```
-npx cypress open -e form=<name of JSON file with form data>,n=<# of iterations>
+npx cypress open -e form=<Name of JSON file with form data>,n=<# of iterations>
 ```
 
 For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, we would enter the command as follows:
@@ -255,7 +251,7 @@ The script should start running shortly after.
 From the root directory, enter the following command to run the command-line Cypress Test Runner:
 
 ```
-npx cypress run -e form=<name of JSON file with form data>,n=<# of iterations>
+npx cypress run -e form=<Name of JSON file with form data>,n=<# of iterations>
 ```
 
 For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, we would enter the command as follows:

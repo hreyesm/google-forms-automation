@@ -48,8 +48,8 @@ export default class GoogleFormsAutomation {
       case "multipleChoiceGrid":
         this.fillMultipleChoiceGrid(answer.choices);
         break;
-      case "checkbox":
-        this.fillCheckbox(answer.choices);
+      case "checkboxes":
+        this.fillCheckboxes(answer.choices);
         break;
       case "checkboxGrid":
         this.fillCheckboxGrid(answer.choices);
@@ -93,7 +93,7 @@ export default class GoogleFormsAutomation {
     });
   }
 
-  fillCheckbox(choices) {
+  fillCheckboxes(choices) {
     choices.forEach((choice) => {
       cy.contains(choice).within(() => {
         this.click("checkbox");
