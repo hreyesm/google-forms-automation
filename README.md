@@ -5,7 +5,7 @@ A generic script that fills out Google Forms automatically.
 [Héctor Reyes](https://github.com/hreyesm)
 
 ## Demo
-![Demo](./img/demo.gif)
+![](./img/demo.gif)
 
 ## Contents
 * [Overview](#overview)
@@ -54,12 +54,13 @@ npx cypress open --env form=<name of the JSON file preloaded with data>,n=<numbe
 ```
 
 If successful, the command should open a window similar to this:
-![Cypress Test Runner](./img/cypress-test-runner.jpg)
+![](./img/test-runner.jpg)
 
-Then click on the "google-forms-automation.spec.js" file. A browser window like the one below should open:
-![Browser](./img/browser.jpg)
+Then click on the "google-forms-automation.spec.js" file. A Chrome window like the one below should open:
+![](./img/loading.jpg)
 
 The script should start running shortly after.
+![](./img/chrome.jpg)
 
 ## License
 The code of this repository was implemented by [Héctor Reyes](https://github.com/hreyesm). Released under the [MIT license](./LICENSE).
