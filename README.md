@@ -49,7 +49,7 @@ After cloning the repository and moving to the root directory, enter the command
 ## Usage
 
 ### Graphical View
-From the root directory, enter the following command to open the Cypress Test Runner:
+From the root directory, enter the following command to open the graphical Cypress Test Runner:
 ```
 npx cypress open -e form=<name of JSON file with form data>,n=<# of iterations>
 ```
@@ -59,20 +59,20 @@ For example, if we wanted the script to fill out the form specified in the [exam
 If successful, the command should open a window similar to this:
 ![](./img/test-runner.jpg)
 
-After that, click on the displayed **google-forms-automation.spec.js** file. A Chrome window like the one below should open:
+After that, click on the **google-forms-automation.spec.js** file shown. A Chrome window like the one below should appear:
 ![](./img/chrome.jpg)
 
 The script should start running shortly after.
 
 ### Command Line View
-From the root directory, enter the following command to open the Cypress Test Runner:
+From the root directory, enter the following command to run the command-line Cypress Test Runner:
 ```
 npx cypress run -e form=<name of JSON file with form data>,n=<# of iterations>
 ```
 For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, we would enter the command as follows:
 ![](./img/run.jpg)
 
-The script should start running shortly after. If successful, the command should display the following information:
+The script should start running shortly after. If successful, the terminal should display the following information:
 ![](./img/command-line.jpg)
 
 ## License
