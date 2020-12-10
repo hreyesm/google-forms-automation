@@ -13,6 +13,8 @@ A generic script that fills out Google Forms automatically.
 * [Installation](#installation)
   * [Requirements](#requirements)
 * [Usage](#usage)
+  * [Graphical View](#graphical-view)
+  * [Command Line View](#command-line-view)
 * [License](#license)
 
 ## Overview
@@ -46,7 +48,7 @@ After cloning the repository and moving to the root directory, enter the command
 
 ## Usage
 
-### Graphical View Mode
+### Graphical View
 From the root directory, enter the following command to open the Cypress Test Runner:
 ```
 npx cypress open -e form=<name of JSON file with form data>,n=<# of iterations>
@@ -62,7 +64,7 @@ After that, click on the displayed **google-forms-automation.spec.js** file. A C
 
 The script should start running shortly after.
 
-### Command Line View Mode
+### Command Line View
 From the root directory, enter the following command to open the Cypress Test Runner:
 ```
 npx cypress run -e form=<name of JSON file with form data>,n=<# of iterations>
