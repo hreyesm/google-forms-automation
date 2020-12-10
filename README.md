@@ -66,7 +66,7 @@ After cloning the repository and moving to the root directory, enter the command
 
 ### JSON File Location
 
-**JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures) subdirectory,** as in the directory tree below; otherwise the script will not recognize them.
+JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
 
 ```
 📦 google-forms-automation
@@ -95,7 +95,7 @@ Due to how Cypress redirects to web pages, the URL to be included in the JSON fi
 
 #### Questions
 
-The format of the questions to be included in the JSON file will vary depending on the nature of their respective answers. **Questions must be added to the** `"questions"` **array in the order they appear on the original form.**
+The format of the questions to be included in the JSON file will vary depending on the nature of their respective answers. **Questions must be added to the** `"questions"` **array in the exact order they appear on the original form.**
 
 - **Short Answer**
 
@@ -224,6 +224,34 @@ The format of the questions to be included in the JSON file will vary depending 
     }
   }
   ```
+  
+#### Section End and Form End
+
+To tell the script to go to the next section on a form, simply add a `"sectionEnd"` key to the last question in a section, as in the following example:
+
+```json
+{
+  "title": "Linear Scale",
+  "answer": {
+    "type": "linearScale",
+    "choice": "1"
+  },
+  "sectionEnd": true
+}
+```
+
+Likewise, to tell the script to submit the form, add a `"formEnd"` key to the last question in the form:
+
+```json
+    {
+      "title": "Time",
+      "answer": {
+        "type": "time",
+        "value": "00:00"
+      },
+      "formEnd": true
+    }
+```
 
 The [example.json](./cypress/fixtures/example.json) file included in this repository should give you a good idea on how to structure the form data.
 
