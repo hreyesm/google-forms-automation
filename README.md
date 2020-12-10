@@ -13,6 +13,7 @@ A generic script that fills out Google Forms automatically.
 * [Installation](#installation)
   * [Requirements](#requirements)
 * [Usage](#usage)
+  * [JSON File Structure](#json-file-structure)
   * [Graphical View](#graphical-view)
   * [Command Line View](#command-line-view)
 * [License](#license)
@@ -47,6 +48,8 @@ git clone https://github.com/hreyesm/google-forms-automation
 After cloning the repository and moving to the root directory, enter the command `npm install` to install devDependencies, including [Cypress](https://www.cypress.io/).
 
 ## Usage
+
+### JSON File Structure
 
 ### Graphical View
 From the root directory, enter the following command to open the graphical Cypress Test Runner:
