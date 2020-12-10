@@ -61,7 +61,7 @@ After cloning the repository and moving to the root directory, enter the command
 
 ### JSON File Structure
 
-The [example.json](./cypress/fixtures/example.json) file included in this repository is structured in such a way that the script runs without errors. For a JSON file to work properly, it must be created according to the following guidelines.
+For a JSON file to work properly, it must be created according to the following guidelines.
 
 #### URL
 
@@ -213,6 +213,8 @@ The [example.json](./cypress/fixtures/example.json) file included in this reposi
     "formEnd": true
   }
   ```
+  
+The [example.json](./cypress/fixtures/example.json) file included in this repository should give you a good idea on how to structure the form data.
 
 ### Graphical View
 
