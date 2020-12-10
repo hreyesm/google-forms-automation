@@ -66,7 +66,7 @@ After cloning the repository and moving to the root directory, enter the command
 
 ### JSON File Location
 
-JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
+**JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures) subdirectory,** as in the directory tree below; otherwise the script will not recognize them.
 
 ```
 📦 google-forms-automation
@@ -87,7 +87,7 @@ The general structure of a JSON file supported by the script looks like the foll
 }
 ```
 
-For a JSON file to work properly, it must be formatted according to the following guidelines.
+For a JSON file to work properly, it must be formatted according to the guidelines below.
 
 #### URL
 
@@ -95,7 +95,7 @@ Due to how Cypress redirects to web pages, the URL to be included in the JSON fi
 
 #### Questions
 
-The format of the questions to be included in the file will vary according to the nature of their respective answers.
+The format of the questions to be included in the JSON file will vary depending on the nature of their respective answers. **Questions must be added to the** `"questions"` **array in the order they appear on the original form.**
 
 - **Short Answer**
 
