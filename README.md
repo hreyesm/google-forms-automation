@@ -61,9 +61,19 @@ After cloning the repository and moving to the root directory, enter the command
 
 ### JSON File Format
 
-For a JSON file to work properly, it must be formatted according to the following guidelines. Please note that the files corresponding to the forms to be completed will only be read if they are inside the [fixtures](./cypress/fixtures) directory; otherwise the script will not recognize them.
+For a JSON file to work properly, it must be formatted according to the following guidelines.
 
-#### Location
+#### File Location
+
+The JSON files corresponding to the forms to be completed will only be read if they are, as in the example below, inside the [forms] (./ cypress / fixtures) subdirectory; otherwise the script will not recognize them.
+
+```
+📦 google-forms-automation
+ ┣ 📂 cypress
+ ┃ ┣ 📂 fixtures
+ ┃ ┃ ┣ 📂 forms
+ ┃ ┃ ┃ ┗ 📜 example.json 
+```
 
 #### URL
 
