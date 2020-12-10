@@ -12,21 +12,17 @@ A generic script that fills out Google Forms automatically.
 
 ## Contents
 
-- [Google Forms Automation](#google-forms-automation)
-    - [Author](#author)
-  - [Demo](#demo)
-  - [Contents](#contents)
-  - [Overview](#overview)
-    - [Features](#features)
-  - [Installation](#installation)
-    - [Requirements](#requirements)
-  - [Usage](#usage)
-    - [JSON File Structure](#json-file-structure)
-      - [URL](#url)
-      - [Questions](#questions)
-    - [Graphical View](#graphical-view)
-    - [Command Line View](#command-line-view)
-  - [License](#license)
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [JSON File Structure](#json-file-structure)
+  - [URL](#url)
+  - [Questions](#questions)
+- [Graphical View](#graphical-view)
+- [Command Line View](#command-line-view)
+- [License](#license)
 
 ## Overview
 
@@ -75,7 +71,7 @@ The [example.json](./cypress/fixtures/example.json) file included in this reposi
 
 #### Questions
 
-- **Short Answer**
+- Short Answer
 
   ```json
   {
