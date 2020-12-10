@@ -25,7 +25,7 @@ A generic script that fills out Google Forms automatically.
     - [JSON File Format](#json-file-format)
       - [URL](#url)
       - [Questions](#questions)
-      - [Section End and Form End](#section-end-and-form-end)
+      - [Section End and Form End Flags](#section-end-and-form-end-flags)
     - [Graphical View](#graphical-view)
     - [Command Line View](#command-line-view)
   - [License](#license)
@@ -226,7 +226,7 @@ The format of the questions to be included in the JSON file will vary depending 
   }
   ```
 
-#### Section End and Form End
+#### Section End and Form End Flags
 
 To instruct the script to go to the next section of a form, simply add a `"sectionEnd"` flag to the last question in a section:
 
