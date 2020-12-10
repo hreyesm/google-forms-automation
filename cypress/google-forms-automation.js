@@ -66,7 +66,7 @@ export default class GoogleFormsAutomation {
   }
 
   fillTime(input) {
-    const time = input.split(".");
+    const time = input.split(":");
     cy.get(this.selectors.timeInputs)
       .children(this.selectors.timeNumber)
       .each((child, index) => {
