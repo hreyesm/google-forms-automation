@@ -13,7 +13,6 @@ A generic script that fills out Google Forms automatically.
 * [Installation](#installation)
   * [Requirements](#requirements)
 * [Usage](#usage)
-  * [Example](#example)
 * [License](#license)
 
 ## Overview
@@ -52,7 +51,7 @@ From the root directory, enter the following command to open the Cypress Test Ru
 ```
 npx cypress open -e form=<name of JSON file with form data>,n=<# of iterations>
 ```
-For example, if you wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, then you would enter the command as follows:
+For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, we would enter the command as follows:
 ![](./img/open.jpg)
 
 If successful, the command should open a window similar to this:
@@ -62,6 +61,17 @@ After that, click on the displayed **google-forms-automation.spec.js** file. A C
 ![](./img/chrome.jpg)
 
 The script should start running shortly after.
+
+### Command Line View Mode
+From the root directory, enter the following command to open the Cypress Test Runner:
+```
+npx cypress run -e form=<name of JSON file with form data>,n=<# of iterations>
+```
+For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, we would enter the command as follows:
+![](./img/run.jpg)
+
+The script should start running shortly after. If successful, the command should display the following information:
+![](./img/command-line.jpg)
 
 ## License
 The code of this repository was implemented by [Héctor Reyes](https://github.com/hreyesm). Released under the [MIT license](./LICENSE).
