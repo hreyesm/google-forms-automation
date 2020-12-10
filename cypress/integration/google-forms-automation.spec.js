@@ -11,7 +11,7 @@ describe("Google Forms Automation", () => {
 
   for (let i = 1; i <= n; i++) {
     it("Iteration " + i, () => {
-      gfa.fillForm(form);
+      gfa.fillForm("forms/" + form);
     });
   }
 });
