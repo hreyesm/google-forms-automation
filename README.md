@@ -37,7 +37,7 @@ JavaScript / Cypress script that fills out Google Forms automatically.
 
 - Graphical and command line view modes.
 - Forms are filled out the desired number of times from a JSON file preloaded with data.
-- Support for multi-section forms with the following question types (dropdown is not supported):
+- Support for multi-section forms with the following [question types](#questions) (dropdown is not supported):
   - Short answer
   - Paragraph
   - Multiple choice
@@ -66,7 +66,7 @@ After cloning the repository and moving to the root directory, enter the command
 
 ### JSON File Location
 
-JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures) subdirectory, as in the example below; otherwise the script will not recognize them.
+JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
 
 ```
 📦 google-forms-automation
@@ -91,11 +91,11 @@ For a JSON file to work properly, it must be formatted according to the followin
 
 #### URL
 
-Due to how Cypress redirects to web pages, the URLs to be included in the file should not be abbreviated. A valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
+Due to how Cypress redirects to web pages, the URL to be included in the JSON file should not be abbreviated. A valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
 
 #### Questions
 
-The format of the questions to be included in the file will vary depending on the content of their respective answers.
+The format of the questions to be included in the file will vary according to the nature of their respective answers.
 
 - **Short Answer**
 
