@@ -13,15 +13,15 @@ A generic script that fills out Google Forms automatically.
 ## Contents
 
 - [Overview](#overview)
-- [Features](#features)
+  - [Features](#features)
 - [Installation](#installation)
-- [Requirements](#requirements)
+  - [Requirements](#requirements)
 - [Usage](#usage)
-- [JSON File Structure](#json-file-structure)
-  - [URL](#url)
-  - [Questions](#questions)
-- [Graphical View](#graphical-view)
-- [Command Line View](#command-line-view)
+  - [JSON File Structure](#json-file-structure)
+    - [URL](#url)
+    - [Questions](#questions)
+  - [Graphical View](#graphical-view)
+  - [Command Line View](#command-line-view)
 - [License](#license)
 
 ## Overview
