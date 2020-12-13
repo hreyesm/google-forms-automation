@@ -25,7 +25,7 @@ A generic script that fills out Google Forms automatically.
     - [JSON File Format](#json-file-format)
       - [URL](#url)
       - [Questions](#questions)
-      - [Section End and Form End](#section-end-and-form-end)
+      - [Section End and Form End Flags](#section-end-and-form-end-flags)
     - [Graphical View](#graphical-view)
     - [Command Line View](#command-line-view)
   - [License](#license)
@@ -67,7 +67,7 @@ After cloning the repository and moving to the root directory, enter the command
 
 ### JSON File Location
 
-JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
+JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
 
 ```
 📦 google-forms-automation
@@ -226,7 +226,7 @@ The format of the questions to be included in the JSON file will vary depending 
   }
   ```
 
-#### Section End and Form End
+#### Section End and Form End Flags
 
 To instruct the script to go to the next section of a form, simply add a `"sectionEnd"` flag to the last question in a section:
 
@@ -248,7 +248,7 @@ Similarly, to instruct the script to submit the form, add a `"formEnd"` flag to 
 }
 ```
 
-The [example.json](./cypress/fixtures/example.json) file included in this repository should give you a good idea on how to structure the form data.
+The [example.json](./cypress/fixtures/forms/example.json) file included in this repository should give you a good idea on how to structure the form data.
 
 ### Graphical View
 
@@ -258,7 +258,7 @@ From the root directory, enter the following command to open the graphical Cypre
 npx cypress open -e form=<Name of JSON file with form data>,n=<# of iterations>
 ```
 
-For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, we would enter the command as follows:
+For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
 ![](./img/open.jpg)
 
 If successful, the command should open a window similar to this:
@@ -277,7 +277,7 @@ From the root directory, enter the following command to run the command-line Cyp
 npx cypress run -e form=<Name of JSON file with form data>,n=<# of iterations>
 ```
 
-For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/example.json) file a total of three times, we would enter the command as follows:
+For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
 ![](./img/run.jpg)
 
 The script should start running shortly after. If successful, the terminal should display the following information:
@@ -285,4 +285,4 @@ The script should start running shortly after. If successful, the terminal shoul
 
 ## License
 
-The code of this repository was implemented by [Héctor Reyes](https://github.com/hreyesm). Released under the [MIT license](./LICENSE).
+The code of this repository was implemented by [Héctor Reyes](https://github.com/hreyesm). Released under the [MIT license](./LICENSE.md).
