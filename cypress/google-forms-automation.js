@@ -27,6 +27,7 @@ export default class GoogleFormsAutomation {
   }
 
   fillQuestion(answer) {
+    let choice;
     switch (answer.type) {
       case "shortAnswer":
       case "date":
@@ -40,19 +41,18 @@ export default class GoogleFormsAutomation {
         break;
       case "multipleChoice":
       case "linearScale":
-        this.fillMultipleChoice(answer.choice);
-        break;
-      case "linearScale":
-        this.fillMultipleChoice(answer.choice);
+        choice = this.getMultipleChoice(answer);
+        this.fillMultipleChoice(choice);
         break;
       case "multipleChoiceGrid":
-        this.fillMultipleChoiceGrid(answer.choices);
+        this.fillMultipleChoiceGrid(answer.choice);
         break;
       case "checkboxes":
-        this.fillCheckboxes(answer.choices);
+        choice = this.getCheckboxes(answer);
+        this.fillCheckboxes(choice);
         break;
       case "checkboxGrid":
-        this.fillCheckboxGrid(answer.choices);
+        this.fillCheckboxGrid(answer.choice);
         break;
     }
   }
@@ -76,6 +76,24 @@ export default class GoogleFormsAutomation {
       });
   }
 
+  getMultipleChoice(answer) {
+    if (answer.pattern == "probabilistic") {
+      let s = 0;
+      const options = answer.choice.options,
+        probabilities = answer.choice.probabilities,
+        end = probabilities.length - 1;
+      for (let i = 0; i < end; i++) {
+        s += probabilities[i];
+        if (Math.random() < s) {
+          return options[i];
+        }
+      }
+      return options[end];
+    } else if (answer.pattern == "fixed") {
+      return answer.choice;
+    }
+  }
+
   fillMultipleChoice(choice) {
     cy.contains(choice).within(() => {
       this.click("multipleChoice");
@@ -91,6 +109,20 @@ export default class GoogleFormsAutomation {
           this.fillGrid("multipleChoice", cols, choice.column);
         });
     });
+  }
+
+  getCheckboxes(answer) {
+    if (answer.pattern == "probabilistic") {
+      let options = [];
+      const probabilities = answer.choice.probabilities,
+        end = Math.floor(Math.random() * probabilities.length) + 1;
+      for (let i = 0; i < end; i++) {
+        options.push(this.getMultipleChoice(answer));
+      }
+      return [...new Set(options)];
+    } else if (pattern == "fixed") {
+      return answer.choice.options;
+    }
   }
 
   fillCheckboxes(choices) {
