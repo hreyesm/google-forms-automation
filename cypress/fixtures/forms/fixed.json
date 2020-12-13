@@ -1,0 +1,137 @@
+{
+  "url": "https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform",
+  "questions": [
+    {
+      "title": "Short Answer",
+      "type": "shortAnswer",
+      "answer": {
+        "value": "Lorem ipsum."
+      }
+    },
+
+    {
+      "title": "Paragraph",
+      "type": "paragraph",
+      "answer": {
+        "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      "sectionEnd": true
+    },
+
+    {
+      "title": "Multiple Choice",
+      "type": "multipleChoice",
+      "answer": {
+        "pattern": "fixed",
+        "choice": "Option 1"
+      }
+    },
+
+    {
+      "title": "Checkboxes",
+      "type": "checkboxes",
+      "answer": {
+        "pattern": "fixed",
+        "choice": ["Option 1", "Option 3"]
+      }
+    },
+
+    {
+      "title": "Linear Scale",
+      "type": "linearScale",
+      "answer": {
+        "pattern": "fixed",
+        "choice": "1"
+      },
+      "sectionEnd": true
+    },
+
+    {
+      "title": "Multiple Choice Grid",
+      "type": "multipleChoiceGrid",
+      "rows": [
+        {
+          "title": "Row 1",
+          "answer": {
+            "pattern": "fixed",
+            "choice": "Column 1"
+          }
+        },
+        {
+          "title": "Row 2",
+          "answer": {
+            "pattern": "fixed",
+            "choice": "Column 2"
+          }
+        },
+        {
+          "title": "Row 3",
+          "answer": {
+            "pattern": "fixed",
+            "choice": "Column 3"
+          }
+        },
+        {
+          "title": "Row 4",
+          "answer": {
+            "pattern": "fixed",
+            "choice": "Column 4"
+          }
+        }
+      ]
+    },
+
+    {
+      "title": "Checkbox Grid",
+      "type": "checkboxGrid",
+      "rows": [
+        {
+          "title": "Row 1",
+          "answer": {
+            "pattern": "fixed",
+            "choice": ["Column 1"]
+          }
+        },
+        {
+          "title": "Row 2",
+          "answer": {
+            "pattern": "fixed",
+            "choice": ["Column 1", "Column 2"]
+          }
+        },
+        {
+          "title": "Row 3",
+          "answer": {
+            "pattern": "fixed",
+            "choice": ["Column 1", "Column 2", "Column 3"]
+          }
+        },
+        {
+          "title": "Row 4",
+          "answer": {
+            "pattern": "fixed",
+            "choice": ["Column 1", "Column 2", "Column 3", "Column 4"]
+          }
+        }
+      ],
+      "sectionEnd": true
+    },
+
+    {
+      "title": "Date",
+      "type": "date",
+      "answer": {
+        "value": "2020-01-01"
+      }
+    },
+
+    {
+      "title": "Time",
+      "type": "time",
+      "answer": {
+        "value": "00:00"
+      },
+      "formEnd": true
+    }
+  ]
+}

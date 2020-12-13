@@ -14,7 +14,7 @@ export default class GoogleFormsAutomation {
           .parent()
           .next()
           .within(() => {
-            this.fillQuestion(question.answer);
+            this.fillQuestion(question);
           });
         if (question.sectionEnd) {
           this.nextSection();
@@ -26,33 +26,30 @@ export default class GoogleFormsAutomation {
     });
   }
 
-  fillQuestion(answer) {
-    let choice;
-    switch (answer.type) {
+  fillQuestion(question) {
+    switch (question.type) {
       case "shortAnswer":
       case "date":
-        this.type("input", answer.value.toString());
+        this.type("input", question.answer.value.toString());
         break;
       case "paragraph":
-        this.type("paragraph", answer.value.toString());
+        this.type("paragraph", question.answer.value.toString());
         break;
       case "time":
-        this.fillTime(answer.value.toString());
+        this.fillTime(question.answer.value.toString());
         break;
       case "multipleChoice":
       case "linearScale":
-        choice = this.getMultipleChoice(answer);
-        this.fillMultipleChoice(choice);
-        break;
-      case "multipleChoiceGrid":
-        this.fillMultipleChoiceGrid(answer.choice);
+        this.fillMultipleChoice(question.answer);
         break;
       case "checkboxes":
-        choice = this.getCheckboxes(answer);
-        this.fillCheckboxes(choice);
+        this.fillCheckboxes(question.answer);
+        break;
+      case "multipleChoiceGrid":
+        this.fillMultipleChoiceGrid(question.rows);
         break;
       case "checkboxGrid":
-        this.fillCheckboxGrid(answer.choice);
+        this.fillCheckboxGrid(question.rows);
         break;
     }
   }
@@ -69,19 +66,26 @@ export default class GoogleFormsAutomation {
     const time = input.split(":");
     cy.get(this.selectors.timeInputs)
       .children(this.selectors.timeNumber)
-      .each((child, index) => {
+      .each((child, i) => {
         cy.get(child).within(() => {
-          this.type("input", time[index]);
+          this.type("input", time[i]);
         });
       });
+  }
+
+  fillMultipleChoice(answer) {
+    const choice = this.getMultipleChoice(answer);
+    cy.contains(choice).within(() => {
+      this.click("multipleChoice");
+    });
   }
 
   getMultipleChoice(answer) {
     if (answer.pattern == "probabilistic") {
       let s = 0;
-      const options = answer.choice.options,
-        probabilities = answer.choice.probabilities,
-        end = probabilities.length - 1;
+      const options = answer.options;
+      const probabilities = answer.probabilities;
+      const end = probabilities.length - 1;
       for (let i = 0; i < end; i++) {
         s += probabilities[i];
         if (Math.random() < s) {
@@ -94,38 +98,8 @@ export default class GoogleFormsAutomation {
     }
   }
 
-  fillMultipleChoice(choice) {
-    cy.contains(choice).within(() => {
-      this.click("multipleChoice");
-    });
-  }
-
-  fillMultipleChoiceGrid(choices) {
-    const cols = this.mapColumns(choices.length);
-    choices.forEach((choice) => {
-      cy.contains(choice.row)
-        .parent()
-        .within(() => {
-          this.fillGrid("multipleChoice", cols, choice.column);
-        });
-    });
-  }
-
-  getCheckboxes(answer) {
-    if (answer.pattern == "probabilistic") {
-      let options = [];
-      const probabilities = answer.choice.probabilities,
-        end = Math.floor(Math.random() * probabilities.length) + 1;
-      for (let i = 0; i < end; i++) {
-        options.push(this.getMultipleChoice(answer));
-      }
-      return [...new Set(options)];
-    } else if (pattern == "fixed") {
-      return answer.choice.options;
-    }
-  }
-
-  fillCheckboxes(choices) {
+  fillCheckboxes(answer) {
+    const choices = this.getCheckboxes(answer);
     choices.forEach((choice) => {
       cy.contains(choice).within(() => {
         this.click("checkbox");
@@ -133,17 +107,60 @@ export default class GoogleFormsAutomation {
     });
   }
 
-  fillCheckboxGrid(choices) {
-    const cols = this.mapColumns(choices.length);
-    choices.forEach((choice) => {
-      cy.contains(choice.row)
+  getCheckboxes(answer) {
+    if (answer.pattern == "probabilistic") {
+      let options = [];
+      const probabilities = answer.probabilities;
+      const end = Math.floor(Math.random() * probabilities.length) + 1;
+      for (let i = 0; i < end; i++) {
+        options.push(this.getMultipleChoice(answer));
+      }
+      return [...new Set(options)];
+    } else if (answer.pattern == "fixed") {
+      return answer.choice;
+    }
+  }
+  
+  fillMultipleChoiceGrid(rows) {
+    const choices = this.getMultipleChoiceGrid(rows);
+    const columns = this.mapColumns(rows.length);
+    rows.forEach((row, i) => {
+      cy.contains(row.title)
         .parent()
         .within(() => {
-          choice.columns.forEach((c) => {
-            this.fillGrid("checkbox", cols, c);
+          this.fillGrid("multipleChoice", columns, choices[i]);
+        });
+    });
+  }
+
+  getMultipleChoiceGrid(rows) {
+    let choices = [];
+    rows.forEach((row) => {
+      choices.push(this.getMultipleChoice(row.answer));
+    });
+    return choices;
+  }
+  
+  fillCheckboxGrid(rows) {
+    const choices = this.getCheckboxGrid(rows);
+    const columns = this.mapColumns(rows.length);
+    rows.forEach((row, i) => {
+      cy.contains(row.title)
+        .parent()
+        .within(() => {
+          choices[i].forEach((choice) => {
+            this.fillGrid("checkbox", columns, choice);
           });
         });
     });
+  }
+
+  getCheckboxGrid(rows) {
+    let choices = [];
+    rows.forEach((row) => {
+      choices.push(this.getCheckboxes(row.answer));
+    });
+    return choices;
   }
 
   mapColumns(n) {
