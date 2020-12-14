@@ -4,17 +4,13 @@
     {
       "title": "Short Answer",
       "type": "shortAnswer",
-      "answer": {
-        "value": "Lorem ipsum."
-      }
+      "answer": "Lorem ipsum."
     },
 
     {
       "title": "Paragraph",
       "type": "paragraph",
-      "answer": {
-        "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      },
+      "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "sectionEnd": true
     },
 
@@ -127,17 +123,13 @@
     {
       "title": "Date",
       "type": "date",
-      "answer": {
-        "value": "2020-01-01"
-      }
+      "answer": "2020-01-01"
     },
 
     {
       "title": "Time",
       "type": "time",
-      "answer": {
-        "value": "00:00"
-      },
+      "answer": "00:00",
       "formEnd": true
     }
   ]
