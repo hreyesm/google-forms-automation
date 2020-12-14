@@ -12,10 +12,6 @@ A generic script that fills out Google Forms automatically.
 
 ## Contents
 
-- [Google Forms Automation](#google-forms-automation)
-    - [Author](#author)
-  - [Demo](#demo)
-  - [Contents](#contents)
   - [Overview](#overview)
     - [Features](#features)
   - [Installation](#installation)
