@@ -38,7 +38,6 @@ JavaScript / Cypress script that fills out Google Forms automatically.
 
 - Graphical and command line view modes.
 - Forms are filled out the desired number of times from a JSON file preloaded with data.
-- Fixed or probabilistic fill patterns as required.
 - Support for multi-section forms with the following [question types](#questions) (dropdown is not supported):
   - Short answer
   - Paragraph
@@ -49,6 +48,7 @@ JavaScript / Cypress script that fills out Google Forms automatically.
   - Checkbox grid
   - Date
   - Time
+- Fixed or probabilistic fill patterns as needed for multiple choice, checkboxes, linear scale, multiple choice grid, and checkbox grid.
 
 ## Installation
 
@@ -62,7 +62,7 @@ Install from this repository:
 git clone https://github.com/hreyesm/google-forms-automation
 ```
 
-After cloning the repository, move to the root directory and enter the command `npm install` to install devDependencies, including [Cypress](https://www.cypress.io/).
+After cloning the repository, go to the root directory and enter the command `npm install` to install [Cypress](https://www.cypress.io/).
 
 ## Usage
 
