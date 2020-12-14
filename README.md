@@ -143,7 +143,15 @@ The format of the questions to be included in the JSON file will vary depending 
     }
     ```
 
-- **Fixed and Probabilistic Fill Patterns:** Can be filled out from a fixed value, based on the probability assigned to each individual option, or, in the case of grid-type questions, a combination of both. For probability-based filling, all `"options"` must be listed followed by their `"probabilities"` so that the sum of the probabilities equals **1.0**.
+- **Fixed and Probabilistic Fill Patterns:** Can be filled out from a fixed value, based on the probability assigned to each individual option, or, in the case of grid-type questions, a combination of both. For probability-based filling, all options must be listed followed by their respective probabilities so that the sum of the `"probabilities"` array equals **1.0**. The following JSON snippet, for example, means that there is a 40% chance that the script will fill "Option 1", a 30% chance that it will fill "Option 2", a 20% chance that it will fill "Option 3", and a 10% chance that it will fill "Option 4":
+
+  ```
+  "answer": {
+    "pattern": "probabilistic",
+    "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+    "probabilities": [0.4, 0.3, 0.2, 0.1]
+  }
+  ```
 
   - Multiple Choice
 

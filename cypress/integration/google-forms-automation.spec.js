@@ -2,8 +2,8 @@ import GoogleFormsAutomation from "../google-forms-automation";
 
 describe("Google Forms Automation", () => {
   let gfa;
-  const form = Cypress.env("form");
-  const n = Cypress.env("n");
+  const form = Cypress.env("FORM");
+  const n = Cypress.env("N");
 
   before(() => {
     gfa = new GoogleFormsAutomation();
