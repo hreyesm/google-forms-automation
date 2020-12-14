@@ -38,6 +38,7 @@ JavaScript / Cypress script that fills out Google Forms automatically.
 
 - Graphical and command line view modes.
 - Forms are filled out the desired number of times from a JSON file preloaded with data.
+- Fixed or probabilistic fill patterns as required.
 - Support for multi-section forms with the following [question types](#questions) (dropdown is not supported):
   - Short answer
   - Paragraph
@@ -74,7 +75,9 @@ JSON files corresponding to the forms to be filled out will only be processed if
 ┣ 📂 cypress
 ┃ ┣ 📂 fixtures
 ┃ ┃ ┣ 📂 forms
-┃ ┃ ┃ ┗ 📜 example.json
+┃ ┃ ┃ ┣ 📄 fixed.json
+┃ ┃ ┃ ┣ 📄 probabilistic.json
+
 ```
 
 ### JSON File Format
@@ -103,8 +106,8 @@ The format of the questions to be included in the JSON file will vary depending 
   ```json
   {
     "title": "Question title",
+    "type": "shortAnswer",
     "answer": {
-      "type": "shortAnswer",
       "value": "Value to fill"
     }
   }
@@ -115,8 +118,8 @@ The format of the questions to be included in the JSON file will vary depending 
   ```json
   {
     "title": "Question title",
+    "type": "paragraph",
     "answer": {
-      "type": "paragraph",
       "value": "Value to fill"
     }
   }
@@ -124,59 +127,111 @@ The format of the questions to be included in the JSON file will vary depending 
 
 - **Multiple Choice**
 
-  ```json
-  {
-    "title": "Question title",
-    "answer": {
+  - Fixed Fill Pattern
+
+    ```json
+    {
+      "title": "Question title",
       "type": "multipleChoice",
-      "choice": "Option to select"
+      "answer": {
+        "pattern": "fixed",
+        "choice": "Option to select"
+      }
     }
-  }
-  ```
+    ```
+
+  - Probabilistic Fill Pattern
+    ```json
+    {
+      "title": "Question title",
+      "type": "multipleChoice",
+      "answer": {
+        "pattern": "probabilistic",
+        "options": ["Option 1", ..., "Option N"],
+        "probabilities": [P("Option 1"), ..., P("Option N")]
+      }
+    }
+    ```
 
 - **Checkboxes**
 
-  ```json
-  {
-    "title": "Question title",
-    "answer": {
+  - Fixed Fill Pattern
+
+    ```json
+    {
+      "title": "Question title",
       "type": "checkboxes",
-      "choices": ["Option to select", ..., "Option to select"]
+      "answer": {
+        "pattern": "fixed",
+        "choice": ["Option to select 1", ..., "Option to select N"]
+      }
     }
-  }
-  ```
+    ```
+
+  - Probabilistic Fill Pattern
+    ```json
+    {
+      "title": "Question title",
+      "type": "checkboxes",
+      "answer": {
+        "pattern": "probabilistic",
+        "options": ["Option 1", ..., "Option N"],
+        "probabilities": [P("Option 1"), ..., P("Option N")]
+      }
+    }
+    ```
 
 - **Linear Scale**
 
-  ```json
-  {
-    "title": "Question title",
-    "answer": {
+  - Fixed Fill Pattern
+
+    ```json
+    {
+      "title": "Question title",
       "type": "linearScale",
-      "choice": "Option to select"
+      "answer": {
+        "pattern": "fixed",
+        "choice": "Option to select"
+      }
     }
-  }
-  ```
+    ```
+
+  - Probabilistic Fill Pattern
+    ```json
+    {
+      "title": "Question title",
+      "type": "linearScale",
+      "answer": {
+        "pattern": "probabilistic",
+        "options": ["Option 1", ..., "Option N"],
+        "probabilities": [P("Option 1"), ..., P("Option N")]
+      }
+    }
+    ```
 
 - **Multiple Choice Grid**
 
   ```json
   {
     "title": "Question title",
-    "answer": {
-      "type": "multipleChoiceGrid",
-      "choices": [
-        {
-          "row": "Row title",
-          "column": "Option to select"
-        },
-        ...,
-        {
-          "row": "Row title",
-          "column": "Option to select"
+    "type": "multipleChoiceGrid",
+    "rows": [
+      {
+        "title": "Row 1",
+        "answer": {
+          "pattern": "fixed",
+          "choice": "Column to select"
         }
-      ]
-    }
+      }, ...,
+      {
+        "title": "Row N",
+        "answer": {
+          "pattern": "probabilistic",
+          "options": ["Column 1", ..., "Column N"],
+          "probabilities": [P("Column 1"), ..., P("Column N")]
+        }
+      }
+    ]
   }
   ```
 
@@ -185,20 +240,24 @@ The format of the questions to be included in the JSON file will vary depending 
   ```json
   {
     "title": "Question title",
-    "answer": {
-      "type": "checkboxGrid",
-      "choices": [
-        {
-          "row": "Row title",
-          "columns": ["Option to select", ..., "Option to select"]
-        },
-        ...,
-        {
-          "row": "Row title",
-          "columns": ["Option to select", ..., "Option to select"]
+    "type": "checkboxGrid",
+    "rows": [
+      {
+        "title": "Row 1",
+        "answer": {
+          "pattern": "fixed",
+          "choice": ["Column to select"]
         }
-      ]
-    }
+      }, ...,
+      {
+        "title": "Row N",
+        "answer": {
+          "pattern": "probabilistic",
+          "options": ["Column 1", ..., "Column N"],
+          "probabilities": [P("Column 1"), ..., P("Column N")]
+        }
+      }
+    ]
   }
   ```
 
@@ -207,8 +266,8 @@ The format of the questions to be included in the JSON file will vary depending 
   ```json
   {
     "title": "Question title",
+    "type": "date",
     "answer": {
-      "type": "date",
       "value": "YYYY-MM-DD"
     }
   }
@@ -219,8 +278,8 @@ The format of the questions to be included in the JSON file will vary depending 
   ```json
   {
     "title": "Question title",
+    "type": "time",
     "answer": {
-      "type": "time",
       "value": "HH:MM"
     }
   }
