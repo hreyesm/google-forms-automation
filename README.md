@@ -327,7 +327,7 @@ From the root directory, enter the following command to open the graphical Cypre
 npx cypress open -e FORM=<Name of JSON file with form data>,N=<# of iterations>
 ```
 
-For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
+For example, if we wanted the script to fill out the form specified in the [fixed.json](./cypress/fixtures/forms/fixed.json) file a total of three times, we would enter the command as follows:
 ![](./img/open.jpg)
 
 If successful, the command should open a window similar to this:
@@ -346,7 +346,7 @@ From the root directory, enter the following command to run the command-line Cyp
 npx cypress run -e FORM=<Name of JSON file with form data>,N=<# of iterations>
 ```
 
-For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
+For example, if we wanted the script to fill out the form specified in the [fixed.json](./cypress/fixtures/forms/fixed.json) file a total of three times, we would enter the command as follows:
 ![](./img/run.jpg)
 
 The script should start running shortly after. If successful, the terminal should display the following information:
