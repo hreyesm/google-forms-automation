@@ -62,7 +62,7 @@ Install from this repository:
 git clone https://github.com/hreyesm/google-forms-automation
 ```
 
-After cloning the repository and moving to the root directory, enter the command `npm install` to install devDependencies, including [Cypress](https://www.cypress.io/).
+After cloning the repository, move to the root directory and enter the command `npm install` to install devDependencies, including [Cypress](https://www.cypress.io/).
 
 ## Usage
 
@@ -293,16 +293,18 @@ To instruct the script to go to the next section of a form, simply add a `"secti
 ```
 {
   "title": "Question title",
+  "type": "questionType",
   "answer": { ... },
   "sectionEnd": true
 }
 ```
 
-Similarly, to submit the form, add a `"formEnd"` flag to the last question in the form:
+Similarly, to submit a form, add a `"formEnd"` flag to the last question in the form:
 
 ```
 {
   "title": "Question title",
+  "type": "questionType",
   "answer": { ... },
   "formEnd": true
 }
