@@ -84,7 +84,7 @@ JSON files corresponding to the forms to be filled out will only be processed if
 
 The general structure of a JSON file supported by the script looks like the following:
 
-```json
+```
 {
   "url": "Form URL",
   "questions": [ ... ]
@@ -290,7 +290,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 To instruct the script to go to the next section of a form, simply add a `"sectionEnd"` flag to the last question in a section:
 
-```json
+```
 {
   "title": "Question title",
   "answer": { ... },
@@ -298,9 +298,9 @@ To instruct the script to go to the next section of a form, simply add a `"secti
 }
 ```
 
-Similarly, to instruct the script to submit the form, add a `"formEnd"` flag to the last question in the form:
+Similarly, to submit the form, add a `"formEnd"` flag to the last question in the form:
 
-```json
+```
 {
   "title": "Question title",
   "answer": { ... },
