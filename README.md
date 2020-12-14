@@ -50,7 +50,7 @@ JavaScript / Cypress script that fills out Google Forms automatically. Useful fo
 
 ## Installation
 
-### Requirements
+#### Requirements
 
 - [Node.js](https://nodejs.org/en/) (10 or above)
 
