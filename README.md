@@ -38,17 +38,18 @@ JavaScript / Cypress script that fills out Google Forms automatically.
 
 - Graphical and command line view modes.
 - Forms are filled out the desired number of times from a JSON file preloaded with data.
-- Support for multi-section forms with the following [question types](#questions) (dropdown is not supported):
+- Support for multi-section forms in any language.
+- Fixed fill pattern for the following question types:
   - Short answer
   - Paragraph
-  - Multiple choice
-  - Checkboxes
-  - Linear scale
-  - Multiple choice grid
-  - Checkbox grid
   - Date
   - Time
-- Fixed or probabilistic fill patterns as needed for multiple choice, checkboxes, linear scale, multiple choice grid, and checkbox grid.
+- Fixed and probabilistic fill patterns (as needed) for the following question types:
+  - Multiple choice
+  - Linear scale
+  - Checkboxes
+  - Multiple choice grid
+  - Gheckbox grid
 
 ## Installation
 
@@ -77,7 +78,6 @@ JSON files corresponding to the forms to be filled out will only be processed if
 ┃ ┃ ┣ 📂 forms
 ┃ ┃ ┃ ┣ 📄 fixed.json
 ┃ ┃ ┃ ┣ 📄 probabilistic.json
-
 ```
 
 ### JSON File Format
@@ -86,7 +86,7 @@ The general structure of a JSON file supported by the script looks like the foll
 
 ```
 {
-  "url": "Form URL",
+  "url": "https://example.com",
   "questions": [ ... ]
 }
 ```
@@ -95,196 +95,202 @@ For a JSON file to work properly, it must be formatted according to the guidelin
 
 #### URL
 
-Due to how Cypress redirects to web pages, the URL to be included in the JSON file should not be abbreviated. A valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
+Due to how Cypress redirects to web pages, the URL to be included in the JSON file **should not be abbreviated.** For example, a valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
 
 #### Questions
 
 The format of the questions to be included in the JSON file will vary depending on the nature of their respective answers. **Questions must be added to the** `"questions"` **array in the exact order they appear on the original form.**
 
-- **Short Answer**
+- **Fixed Fill Pattern Only**
 
-  ```
-  {
-    "title": "Question title",
-    "type": "shortAnswer",
-    "answer": {
-      "value": "Value to fill"
-    }
-  }
-  ```
-
-- **Paragraph**
-
-  ```
-  {
-    "title": "Question title",
-    "type": "paragraph",
-    "answer": {
-      "value": "Value to fill"
-    }
-  }
-  ```
-
-- **Multiple Choice**
-
-  - Fixed Fill Pattern
+  - Short Answer
 
     ```
     {
       "title": "Question title",
-      "type": "multipleChoice",
+      "type": "shortAnswer",
       "answer": {
-        "pattern": "fixed",
-        "choice": "Option to select"
+        "value": "Value to fill"
       }
     }
     ```
 
-  - Probabilistic Fill Pattern
-    ```
-    {
-      "title": "Question title",
-      "type": "multipleChoice",
-      "answer": {
-        "pattern": "probabilistic",
-        "options": ["Option 1", ..., "Option N"],
-        "probabilities": [P("Option 1"), ..., P("Option N")]
-      }
-    }
-    ```
-
-- **Checkboxes**
-
-  - Fixed Fill Pattern
+  - Paragraph
 
     ```
     {
       "title": "Question title",
-      "type": "checkboxes",
+      "type": "paragraph",
       "answer": {
-        "pattern": "fixed",
-        "choice": ["Option to select 1", ..., "Option to select N"]
+        "value": "Value to fill"
       }
     }
     ```
 
-  - Probabilistic Fill Pattern
-    ```
-    {
-      "title": "Question title",
-      "type": "checkboxes",
-      "answer": {
-        "pattern": "probabilistic",
-        "options": ["Option 1", ..., "Option N"],
-        "probabilities": [P("Option 1"), ..., P("Option N")]
-      }
-    }
-    ```
-
-- **Linear Scale**
-
-  - Fixed Fill Pattern
+  - Date
 
     ```
     {
       "title": "Question title",
-      "type": "linearScale",
+      "type": "date",
       "answer": {
-        "pattern": "fixed",
-        "choice": "Option to select"
+        "value": "YYYY-MM-DD"
       }
     }
     ```
 
-  - Probabilistic Fill Pattern
+  - Time
 
     ```
     {
       "title": "Question title",
-      "type": "linearScale",
+      "type": "time",
       "answer": {
-        "pattern": "probabilistic",
-        "options": ["Option 1", ..., "Option N"],
-        "probabilities": [P("Option 1"), ..., P("Option N")]
+        "value": "HH:MM"
       }
     }
     ```
 
-- **Multiple Choice Grid**
+- **Fixed and Probabilistic Fill Patterns**
 
-  ```
-  {
-    "title": "Question title",
-    "type": "multipleChoiceGrid",
-    "rows": [
+  - Multiple Choice
+
+    - Fixed
+
+      ```
       {
-        "title": "Row 1",
+        "title": "Question title",
+        "type": "multipleChoice",
         "answer": {
           "pattern": "fixed",
-          "choice": "Column to select"
-        }
-      }, ...,
-      {
-        "title": "Row N",
-        "answer": {
-          "pattern": "probabilistic",
-          "options": ["Column 1", ..., "Column N"],
-          "probabilities": [P("Column 1"), ..., P("Column N")]
+          "choice": "Option to select"
         }
       }
-    ]
-  }
-  ```
+      ```
 
-- **Checkbox Grid**
+    - Probabilistic
 
-  ```
-  {
-    "title": "Question title",
-    "type": "checkboxGrid",
-    "rows": [
+      ```
       {
-        "title": "Row 1",
+        "title": "Question title",
+        "type": "multipleChoice",
+        "answer": {
+          "pattern": "probabilistic",
+          "options": ["Option 1", ..., "Option N"],
+          "probabilities": [P("Option 1"), ..., P("Option N")]
+        }
+      }
+      ```
+
+  - Checkboxes
+
+    - Fixed
+
+      ```
+      {
+        "title": "Question title",
+        "type": "checkboxes",
         "answer": {
           "pattern": "fixed",
-          "choice": ["Column to select"]
-        }
-      }, ...,
-      {
-        "title": "Row N",
-        "answer": {
-          "pattern": "probabilistic",
-          "options": ["Column 1", ..., "Column N"],
-          "probabilities": [P("Column 1"), ..., P("Column N")]
+          "choice": ["Option to select 1", ..., "Option to select N"]
         }
       }
-    ]
-  }
-  ```
+      ```
 
-- **Date**
+    - Probabilistic
 
-  ```
-  {
-    "title": "Question title",
-    "type": "date",
-    "answer": {
-      "value": "YYYY-MM-DD"
+      ```
+      {
+        "title": "Question title",
+        "type": "checkboxes",
+        "answer": {
+          "pattern": "probabilistic",
+          "options": ["Option 1", ..., "Option N"],
+          "probabilities": [P("Option 1"), ..., P("Option N")]
+        }
+      }
+      ```
+
+  - Linear Scale
+
+    - Fixed
+
+      ```
+      {
+        "title": "Question title",
+        "type": "linearScale",
+        "answer": {
+          "pattern": "fixed",
+          "choice": "Option to select"
+        }
+      }
+      ```
+
+    - Probabilistic
+
+      ```
+      {
+        "title": "Question title",
+        "type": "linearScale",
+        "answer": {
+          "pattern": "probabilistic",
+          "options": ["Option 1", ..., "Option N"],
+          "probabilities": [P("Option 1"), ..., P("Option N")]
+        }
+      }
+      ```
+
+  - Multiple Choice Grid
+
+    ```
+    {
+      "title": "Question title",
+      "type": "multipleChoiceGrid",
+      "rows": [
+        {
+          "title": "Row 1",
+          "answer": {
+            "pattern": "fixed",
+            "choice": "Column to select"
+          }
+        }, ...,
+        {
+          "title": "Row N",
+          "answer": {
+            "pattern": "probabilistic",
+            "options": ["Column 1", ..., "Column N"],
+            "probabilities": [P("Column 1"), ..., P("Column N")]
+          }
+        }
+      ]
     }
-  }
-  ```
+    ```
 
-- **Time**
+  - Checkbox Grid
 
-  ```
-  {
-    "title": "Question title",
-    "type": "time",
-    "answer": {
-      "value": "HH:MM"
+    ```
+    {
+      "title": "Question title",
+      "type": "checkboxGrid",
+      "rows": [
+        {
+          "title": "Row 1",
+          "answer": {
+            "pattern": "fixed",
+            "choice": ["Column to select"]
+          }
+        }, ...,
+        {
+          "title": "Row N",
+          "answer": {
+            "pattern": "probabilistic",
+            "options": ["Column 1", ..., "Column N"],
+            "probabilities": [P("Column 1"), ..., P("Column N")]
+          }
+        }
+      ]
     }
-  }
-  ```
+    ```
 
 #### Section End and Form End Flags
 
@@ -317,7 +323,7 @@ The [example.json](./cypress/fixtures/forms/example.json) file included in this 
 From the root directory, enter the following command to open the graphical Cypress Test Runner:
 
 ```
-npx cypress open -e form=<Name of JSON file with form data>,n=<# of iterations>
+npx cypress open -e FORM=<Name of JSON file with form data>,N=<# of iterations>
 ```
 
 For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
@@ -336,7 +342,7 @@ The script should start running shortly after.
 From the root directory, enter the following command to run the command-line Cypress Test Runner:
 
 ```
-npx cypress run -e form=<Name of JSON file with form data>,n=<# of iterations>
+npx cypress run -e FORM=<Name of JSON file with form data>,N=<# of iterations>
 ```
 
 For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
