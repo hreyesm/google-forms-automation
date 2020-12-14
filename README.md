@@ -17,8 +17,8 @@ A generic script that fills out Google Forms automatically.
   - [Installation](#installation)
     - [Requirements](#requirements)
   - [File Configuration](#file-configuration)
-    - [Location](#location)
-    - [Format](#format)
+    - [JSON File Location](#json-file-location)
+    - [JSON File Format](#json-file-format)
       - [URL](#url)
       - [Questions](#questions)
       - [Section and Form End Flags](#section-and-form-end-flags)
@@ -64,7 +64,7 @@ After cloning the repository, go to the root directory and enter the command `np
 
 ## File Configuration
 
-### Location
+### JSON File Location
 
 JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
 
@@ -77,7 +77,7 @@ JSON files corresponding to the forms to be filled out will only be processed if
 ┃ ┃ ┃ ┣ 📄 probabilistic.json
 ```
 
-### Format
+### JSON File Format
 
 The general structure of a JSON file supported by the script looks like the following:
 
