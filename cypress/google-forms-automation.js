@@ -30,13 +30,13 @@ export default class GoogleFormsAutomation {
     switch (question.type) {
       case "shortAnswer":
       case "date":
-        this.type("input", question.answer.value.toString());
+        this.type("input", question.answer.toString());
         break;
       case "paragraph":
-        this.type("paragraph", question.answer.value.toString());
+        this.type("paragraph", question.answer.toString());
         break;
       case "time":
-        this.fillTime(question.answer.value.toString());
+        this.fillTime(question.answer.toString());
         break;
       case "multipleChoice":
       case "linearScale":
@@ -120,7 +120,7 @@ export default class GoogleFormsAutomation {
       return answer.choice;
     }
   }
-  
+
   fillMultipleChoiceGrid(rows) {
     const choices = this.getMultipleChoiceGrid(rows);
     const columns = this.mapColumns(rows.length);
@@ -140,7 +140,7 @@ export default class GoogleFormsAutomation {
     });
     return choices;
   }
-  
+
   fillCheckboxGrid(rows) {
     const choices = this.getCheckboxGrid(rows);
     const columns = this.mapColumns(rows.length);

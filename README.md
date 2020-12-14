@@ -44,7 +44,7 @@ JavaScript / Cypress script that fills out Google Forms automatically.
   - Paragraph
   - Date
   - Time
-- Fixed and probabilistic fill patterns (as needed) for the following question types:
+- Fixed and probabilistic fill patterns for the following question types:
   - Multiple choice
   - Linear scale
   - Checkboxes
@@ -95,29 +95,27 @@ For a JSON file to work properly, it must be formatted according to the guidelin
 
 #### URL
 
-Due to how Cypress redirects to web pages, the URL to be included in the JSON file **should not be abbreviated.** For example, a valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
+Due to how Cypress redirects to web pages, the URL to be included in the JSON file **should not be abbreviated**. For example, a valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
 
 #### Questions
 
 The format of the questions to be included in the JSON file will vary depending on the nature of their respective answers. **Questions must be added to the** `"questions"` **array in the exact order they appear on the original form.**
 
-- **Fixed Fill Pattern Only**
+- **Fixed Fill Pattern:** Can only be filled out from a fixed value.
 
   - Short Answer
 
-    ```
+    ```json
     {
       "title": "Question title",
       "type": "shortAnswer",
-      "answer": {
-        "value": "Value to fill"
-      }
+      "answer": "Value to fill"
     }
     ```
 
   - Paragraph
 
-    ```
+    ```json
     {
       "title": "Question title",
       "type": "paragraph",
@@ -129,7 +127,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Date
 
-    ```
+    ```json
     {
       "title": "Question title",
       "type": "date",
@@ -141,7 +139,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Time
 
-    ```
+    ```json
     {
       "title": "Question title",
       "type": "time",
@@ -151,13 +149,13 @@ The format of the questions to be included in the JSON file will vary depending 
     }
     ```
 
-- **Fixed and Probabilistic Fill Patterns**
+- **Fixed and Probabilistic Fill Patterns:** Can be filled out from a fixed value, based on the probability assigned to each individual option, or, in the case of grid-type questions, a combination of both. For probability-based filling, all `"options"` must be listed followed by their `"probabilities"` so that the sum of the probabilities equals **1.0**.
 
   - Multiple Choice
 
     - Fixed
 
-      ```
+      ```json
       {
         "title": "Question title",
         "type": "multipleChoice",
@@ -170,39 +168,10 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Probabilistic
 
-      ```
+      ```json
       {
         "title": "Question title",
         "type": "multipleChoice",
-        "answer": {
-          "pattern": "probabilistic",
-          "options": ["Option 1", ..., "Option N"],
-          "probabilities": [P("Option 1"), ..., P("Option N")]
-        }
-      }
-      ```
-
-  - Checkboxes
-
-    - Fixed
-
-      ```
-      {
-        "title": "Question title",
-        "type": "checkboxes",
-        "answer": {
-          "pattern": "fixed",
-          "choice": ["Option to select 1", ..., "Option to select N"]
-        }
-      }
-      ```
-
-    - Probabilistic
-
-      ```
-      {
-        "title": "Question title",
-        "type": "checkboxes",
         "answer": {
           "pattern": "probabilistic",
           "options": ["Option 1", ..., "Option N"],
@@ -215,7 +184,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Fixed
 
-      ```
+      ```json
       {
         "title": "Question title",
         "type": "linearScale",
@@ -228,7 +197,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Probabilistic
 
-      ```
+      ```json
       {
         "title": "Question title",
         "type": "linearScale",
@@ -240,9 +209,38 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
+  - Checkboxes
+
+    - Fixed
+
+      ```json
+      {
+        "title": "Question title",
+        "type": "checkboxes",
+        "answer": {
+          "pattern": "fixed",
+          "choice": ["Option to select 1", ..., "Option to select N"]
+        }
+      }
+      ```
+
+    - Probabilistic
+
+      ```json
+      {
+        "title": "Question title",
+        "type": "checkboxes",
+        "answer": {
+          "pattern": "probabilistic",
+          "options": ["Option 1", ..., "Option N"],
+          "probabilities": [P("Option 1"), ..., P("Option N")]
+        }
+      }
+      ```
+
   - Multiple Choice Grid
 
-    ```
+    ```json
     {
       "title": "Question title",
       "type": "multipleChoiceGrid",
@@ -253,7 +251,8 @@ The format of the questions to be included in the JSON file will vary depending 
             "pattern": "fixed",
             "choice": "Column to select"
           }
-        }, ...,
+        },
+        ...,
         {
           "title": "Row N",
           "answer": {
@@ -268,7 +267,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Checkbox Grid
 
-    ```
+    ```json
     {
       "title": "Question title",
       "type": "checkboxGrid",
@@ -279,7 +278,8 @@ The format of the questions to be included in the JSON file will vary depending 
             "pattern": "fixed",
             "choice": ["Column to select"]
           }
-        }, ...,
+        },
+        ...,
         {
           "title": "Row N",
           "answer": {
@@ -296,7 +296,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 To instruct the script to go to the next section of a form, simply add a `"sectionEnd"` flag to the last question in a section:
 
-```
+```json
 {
   "title": "Question title",
   "type": "questionType",
@@ -307,7 +307,7 @@ To instruct the script to go to the next section of a form, simply add a `"secti
 
 Similarly, to submit a form, add a `"formEnd"` flag to the last question in the form:
 
-```
+```json
 {
   "title": "Question title",
   "type": "questionType",
