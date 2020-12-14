@@ -152,7 +152,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Multiple Choice
 
-    - Fixed
+    - Fixed Fill Pattern
 
       ```
       {
@@ -165,7 +165,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-    - Probabilistic
+    - Probabilistic Fill Pattern
 
       ```
       {
@@ -181,7 +181,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Linear Scale
 
-    - Fixed
+    - Fixed Fill Pattern
 
       ```
       {
@@ -194,7 +194,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-    - Probabilistic
+    - Probabilistic Fill Pattern
 
       ```
       {
@@ -210,7 +210,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Checkboxes
 
-    - Fixed
+    - Fixed Fill Pattern
 
       ```
       {
@@ -223,7 +223,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-    - Probabilistic
+    - Probabilistic Fill Pattern
 
       ```
       {
@@ -237,7 +237,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-  - Multiple Choice Grid
+  - Multiple Choice Grid (Fixed and Probabilistic Fill Patterns)
 
     ```
     {
@@ -264,7 +264,7 @@ The format of the questions to be included in the JSON file will vary depending 
     }
     ```
 
-  - Checkbox Grid
+  - Checkbox Grid (Fixed and Probabilistic Fill Patterns)
 
     ```
     {
