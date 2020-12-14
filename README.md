@@ -103,7 +103,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 - **Short Answer**
 
-  ```json
+  ```
   {
     "title": "Question title",
     "type": "shortAnswer",
@@ -115,7 +115,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 - **Paragraph**
 
-  ```json
+  ```
   {
     "title": "Question title",
     "type": "paragraph",
@@ -129,7 +129,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Fixed Fill Pattern
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "multipleChoice",
@@ -141,7 +141,7 @@ The format of the questions to be included in the JSON file will vary depending 
     ```
 
   - Probabilistic Fill Pattern
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "multipleChoice",
@@ -157,7 +157,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Fixed Fill Pattern
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "checkboxes",
@@ -169,7 +169,7 @@ The format of the questions to be included in the JSON file will vary depending 
     ```
 
   - Probabilistic Fill Pattern
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "checkboxes",
@@ -185,7 +185,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Fixed Fill Pattern
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "linearScale",
@@ -197,7 +197,8 @@ The format of the questions to be included in the JSON file will vary depending 
     ```
 
   - Probabilistic Fill Pattern
-    ```json
+
+    ```
     {
       "title": "Question title",
       "type": "linearScale",
@@ -211,7 +212,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 - **Multiple Choice Grid**
 
-  ```json
+  ```
   {
     "title": "Question title",
     "type": "multipleChoiceGrid",
@@ -237,7 +238,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 - **Checkbox Grid**
 
-  ```json
+  ```
   {
     "title": "Question title",
     "type": "checkboxGrid",
@@ -263,7 +264,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 - **Date**
 
-  ```json
+  ```
   {
     "title": "Question title",
     "type": "date",
@@ -275,7 +276,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 - **Time**
 
-  ```json
+  ```
   {
     "title": "Question title",
     "type": "time",
