@@ -49,7 +49,7 @@ JavaScript / Cypress script that fills out Google Forms automatically.
   - Linear scale
   - Checkboxes
   - Multiple choice grid
-  - Gheckbox grid
+  - Checkbox grid
 
 ## Installation
 
