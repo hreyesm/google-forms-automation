@@ -105,7 +105,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Short Answer
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "shortAnswer",
@@ -115,37 +115,31 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Paragraph
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "paragraph",
-      "answer": {
-        "value": "Value to fill"
-      }
+      "answer": "Value to fill"
     }
     ```
 
   - Date
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "date",
-      "answer": {
-        "value": "YYYY-MM-DD"
-      }
+      "answer": "YYYY-MM-DD"
     }
     ```
 
   - Time
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "time",
-      "answer": {
-        "value": "HH:MM"
-      }
+      "answer": "HH:MM"
     }
     ```
 
@@ -155,7 +149,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Fixed
 
-      ```json
+      ```
       {
         "title": "Question title",
         "type": "multipleChoice",
@@ -168,7 +162,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Probabilistic
 
-      ```json
+      ```
       {
         "title": "Question title",
         "type": "multipleChoice",
@@ -184,7 +178,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Fixed
 
-      ```json
+      ```
       {
         "title": "Question title",
         "type": "linearScale",
@@ -197,7 +191,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Probabilistic
 
-      ```json
+      ```
       {
         "title": "Question title",
         "type": "linearScale",
@@ -213,7 +207,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Fixed
 
-      ```json
+      ```
       {
         "title": "Question title",
         "type": "checkboxes",
@@ -226,7 +220,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
     - Probabilistic
 
-      ```json
+      ```
       {
         "title": "Question title",
         "type": "checkboxes",
@@ -240,7 +234,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Multiple Choice Grid
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "multipleChoiceGrid",
@@ -267,7 +261,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Checkbox Grid
 
-    ```json
+    ```
     {
       "title": "Question title",
       "type": "checkboxGrid",
@@ -296,7 +290,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
 To instruct the script to go to the next section of a form, simply add a `"sectionEnd"` flag to the last question in a section:
 
-```json
+```
 {
   "title": "Question title",
   "type": "questionType",
@@ -307,7 +301,7 @@ To instruct the script to go to the next section of a form, simply add a `"secti
 
 Similarly, to submit a form, add a `"formEnd"` flag to the last question in the form:
 
-```json
+```
 {
   "title": "Question title",
   "type": "questionType",
@@ -316,14 +310,14 @@ Similarly, to submit a form, add a `"formEnd"` flag to the last question in the 
 }
 ```
 
-The [example.json](./cypress/fixtures/forms/example.json) file included in this repository should give you a good idea on how to structure the form data.
+The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json] files included in this repository should give you a good idea on how to structure the form data.
 
 ### Graphical View
 
 From the root directory, enter the following command to open the graphical Cypress Test Runner:
 
 ```
-npx cypress open -e FORM=<Name of JSON file with form data>,N=<# of iterations>
+npx cypress open -e form=<Name of JSON file with form data>,n=<# of iterations>
 ```
 
 For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
@@ -342,7 +336,7 @@ The script should start running shortly after.
 From the root directory, enter the following command to run the command-line Cypress Test Runner:
 
 ```
-npx cypress run -e FORM=<Name of JSON file with form data>,N=<# of iterations>
+npx cypress run -e form=<Name of JSON file with form data>,n=<# of iterations>
 ```
 
 For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
