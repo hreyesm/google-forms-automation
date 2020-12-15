@@ -1,6 +1,6 @@
 # Google Forms Automation
 
-A generic script that fills out Google Forms automatically.
+JavaScript / Cypress script that fills out Google Forms automatically.
 
 ### Author
 
@@ -24,13 +24,13 @@ A generic script that fills out Google Forms automatically.
       - [Section and Form End Flags](#section-and-form-end-flags)
     - [Examples](#examples)
   - [Usage](#usage)
-    - [Graphical View](#graphical-view)
-    - [Command Line View](#command-line-view)
+    - [Graphical View Mode](#graphical-view-mode)
+    - [Command Line View Mode](#command-line-view-mode)
   - [License](#license)
 
 ## Overview
 
-JavaScript / Cypress script that fills out Google Forms automatically. Useful for submitting the same form multiple times, either from fixed values or based on probabilities.
+JavaScript / Cypress script that fills out Google Forms automatically. Useful for submitting the same form multiple times, either from fixed values or based on predefined probabilities.
 
 ### Features
 
@@ -93,13 +93,13 @@ For a JSON file to work properly, it must be formatted according to the guidelin
 
 #### URL
 
-Due to how Cypress redirects to web pages, the URL to be included in the JSON file **should not be abbreviated**. For example, a valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA. Feel free to use the first one to test the script yourself.
+Due to how Cypress redirects to web pages, the URL to be included in the JSON file **should not be abbreviated**. For example, a valid URL would be https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link, while an invalid one would be https://forms.gle/2vXJ9zTJdR664c9TA.
 
 #### Questions
 
-The format of the questions to be included in the JSON file will vary depending on the nature of their respective answers. **Questions must be added to the** `"questions"` **array in the exact order they appear on the original form.**
+The format of the questions to be included in the JSON file will vary depending on the nature of their respective answers. **Questions must be added to the** `"questions"` **array in the exact order they appear on the original form.** Fill patterns can be fixed or probabilistic:
 
-- **Fixed Fill Pattern:** Can only be filled out from a fixed value.
+- **Fixed Fill Pattern:** Can only be filled out from a predefined fixed value. The following question types support a fixed fill pattern:
 
   - Short Answer
 
@@ -141,7 +141,7 @@ The format of the questions to be included in the JSON file will vary depending 
     }
     ```
 
-- **Fixed / Probabilistic Fill Patterns:** Can be filled out from a fixed value, based on the probability assigned to each individual option, or, in the case of grid-type questions, a combination of both. For probability-based filling, all options must be listed followed by their respective probabilities so that the sum of the `"probabilities"` array equals **1.0**. The following JSON snippet, for example, ensures that there is a 40% chance that the script will choose "Option 1", a 30% chance that it will choose "Option 2" a 20% chance that it will choose "Option 3", and a 10% chance that it will choose "Option 4":
+- **Fixed and Probabilistic Fill Patterns:** Can be filled out from a predefined fixed value, based on predefined probabilities assigned to the available options, or, in the case of grid-type questions, a combination of both. For probability-based filling, all options must be listed followed by their respective probabilities so that the sum of the `"probabilities"` array equals **1.0**. The following JSON attribute, for example, ensures that there is a 40% chance that the script will choose "Option 1", a 30% chance that it will choose "Option 2" a 20% chance that it will choose "Option 3", and a 10% chance that it will choose "Option 4":
 
   ```
   "answer": {
@@ -150,6 +150,8 @@ The format of the questions to be included in the JSON file will vary depending 
     "probabilities": [0.4, 0.3, 0.2, 0.1]
   }
   ```
+  
+The following question types support fixed and probabilistic fill patterns:
 
   - Multiple Choice
 
@@ -318,11 +320,11 @@ Similarly, to submit a form, add a `"formEnd"` flag to the last question in the 
 
 ### Examples
 
-The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to properly structure the form data.
+The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to properly structure the form data. Feel free to use the [sample form](https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link) to test the script yourself.
 
 ## Usage
 
-### Graphical View
+### Graphical View Mode
 
 From the root directory, enter the following command to open the graphical Cypress Test Runner:
 
@@ -341,7 +343,7 @@ After that, click on the **google-forms-automation.spec.js** file shown. A Chrom
 
 The script should start running shortly after.
 
-### Command Line View
+### Command Line View Mode
 
 From the root directory, enter the following command to run the command-line Cypress Test Runner:
 
