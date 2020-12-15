@@ -12,20 +12,17 @@ A generic script that fills out Google Forms automatically.
 
 ## Contents
 
-- [Google Forms Automation](#google-forms-automation)
-    - [Author](#author)
-  - [Demo](#demo)
-  - [Contents](#contents)
   - [Overview](#overview)
     - [Features](#features)
   - [Installation](#installation)
     - [Requirements](#requirements)
   - [File Configuration](#file-configuration)
-    - [Location](#location)
-    - [Format](#format)
+    - [JSON File Location](#json-file-location)
+    - [JSON File Format](#json-file-format)
       - [URL](#url)
       - [Questions](#questions)
       - [Section and Form End Flags](#section-and-form-end-flags)
+    - [Examples](#examples)
   - [Usage](#usage)
     - [Graphical View](#graphical-view)
     - [Command Line View](#command-line-view)
@@ -54,7 +51,7 @@ JavaScript / Cypress script that fills out Google Forms automatically. Useful fo
 
 ## Installation
 
-### Requirements
+#### Requirements
 
 - [Node.js](https://nodejs.org/en/) (10 or above)
 
@@ -68,9 +65,9 @@ After cloning the repository, go to the root directory and enter the command `np
 
 ## File Configuration
 
-### Location
+### JSON File Location
 
-JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
+JSON files corresponding to the forms to be submitted will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
 
 ```
 📦 google-forms-automation
@@ -81,7 +78,7 @@ JSON files corresponding to the forms to be filled out will only be processed if
 ┃ ┃ ┃ ┣ 📄 probabilistic.json
 ```
 
-### Format
+### JSON File Format
 
 The general structure of a JSON file supported by the script looks like the following:
 
@@ -144,7 +141,7 @@ The format of the questions to be included in the JSON file will vary depending 
     }
     ```
 
-- **Fixed and Probabilistic Fill Patterns:** Can be filled out from a fixed value, based on the probability assigned to each individual option, or, in the case of grid-type questions, a combination of both. For probability-based filling, all options must be listed followed by their respective probabilities so that the sum of the `"probabilities"` array equals **1.0**. The following JSON snippet, for example, ensures that there is a 40% chance that the script will fill "Option 1", a 30% chance that it will fill "Option 2", a 20% chance that it will fill "Option 3", and a 10% chance that it will fill "Option 4":
+- **Fixed / Probabilistic Fill Patterns:** Can be filled out from a fixed value, based on the probability assigned to each individual option, or, in the case of grid-type questions, a combination of both. For probability-based filling, all options must be listed followed by their respective probabilities so that the sum of the `"probabilities"` array equals **1.0**. The following JSON snippet, for example, ensures that there is a 40% chance that the script will choose "Option 1", a 30% chance that it will choose "Option 2" a 20% chance that it will choose "Option 3", and a 10% chance that it will choose "Option 4":
 
   ```
   "answer": {
@@ -156,7 +153,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Multiple Choice
 
-    - Fixed
+    - Fixed Fill Pattern
 
       ```
       {
@@ -169,7 +166,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-    - Probabilistic
+    - Probabilistic Fill Pattern
 
       ```
       {
@@ -185,7 +182,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Linear Scale
 
-    - Fixed
+    - Fixed Fill Pattern
 
       ```
       {
@@ -198,7 +195,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-    - Probabilistic
+    - Probabilistic Fill Pattern
 
       ```
       {
@@ -214,7 +211,7 @@ The format of the questions to be included in the JSON file will vary depending 
 
   - Checkboxes
 
-    - Fixed
+    - Fixed Fill Pattern
 
       ```
       {
@@ -227,7 +224,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-    - Probabilistic
+    - Probabilistic Fill Pattern
 
       ```
       {
@@ -241,7 +238,7 @@ The format of the questions to be included in the JSON file will vary depending 
       }
       ```
 
-  - Multiple Choice Grid
+  - Multiple Choice Grid (Fixed and Probabilistic Fill Patterns)
 
     ```
     {
@@ -268,7 +265,7 @@ The format of the questions to be included in the JSON file will vary depending 
     }
     ```
 
-  - Checkbox Grid
+  - Checkbox Grid (Fixed and Probabilistic Fill Patterns)
 
     ```
     {
@@ -319,7 +316,9 @@ Similarly, to submit a form, add a `"formEnd"` flag to the last question in the 
 }
 ```
 
-The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to structure the form data.
+### Examples
+
+The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to properly structure the form data.
 
 ## Usage
 
@@ -331,7 +330,7 @@ From the root directory, enter the following command to open the graphical Cypre
 npx cypress open -e FORM=<Name of JSON file with form data>,N=<# of iterations>
 ```
 
-For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
+For example, if we wanted the script to fill out the form specified in the [fixed.json](./cypress/fixtures/forms/fixed.json) file a total of three times, we would enter the command as follows:
 ![](./img/open.jpg)
 
 If successful, the command should open a window similar to this:
@@ -350,7 +349,7 @@ From the root directory, enter the following command to run the command-line Cyp
 npx cypress run -e FORM=<Name of JSON file with form data>,N=<# of iterations>
 ```
 
-For example, if we wanted the script to fill out the form specified in the [example.json](./cypress/fixtures/forms/example.json) file a total of three times, we would enter the command as follows:
+For example, if we wanted the script to fill out the form specified in the [fixed.json](./cypress/fixtures/forms/fixed.json) file a total of three times, we would enter the command as follows:
 ![](./img/run.jpg)
 
 The script should start running shortly after. If successful, the terminal should display the following information:
