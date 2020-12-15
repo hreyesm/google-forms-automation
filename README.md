@@ -22,7 +22,7 @@ A generic script that fills out Google Forms automatically.
       - [URL](#url)
       - [Questions](#questions)
       - [Section and Form End Flags](#section-and-form-end-flags)
-      - [Examples](#examples)
+    - [Examples](#examples)
   - [Usage](#usage)
     - [Graphical View](#graphical-view)
     - [Command Line View](#command-line-view)
@@ -316,7 +316,7 @@ Similarly, to submit a form, add a `"formEnd"` flag to the last question in the 
 }
 ```
 
-#### Examples
+### Examples
 
 The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to properly structure the form data.
 
