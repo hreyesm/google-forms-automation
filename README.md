@@ -22,6 +22,7 @@ A generic script that fills out Google Forms automatically.
       - [URL](#url)
       - [Questions](#questions)
       - [Section and Form End Flags](#section-and-form-end-flags)
+      - [Examples](#examples)
   - [Usage](#usage)
     - [Graphical View](#graphical-view)
     - [Command Line View](#command-line-view)
@@ -66,7 +67,7 @@ After cloning the repository, go to the root directory and enter the command `np
 
 ### JSON File Location
 
-JSON files corresponding to the forms to be filled out will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
+JSON files corresponding to the forms to be submitted will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
 
 ```
 📦 google-forms-automation
@@ -315,7 +316,9 @@ Similarly, to submit a form, add a `"formEnd"` flag to the last question in the 
 }
 ```
 
-The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to structure the form data.
+#### Examples
+
+The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to properly structure the form data.
 
 ## Usage
 
