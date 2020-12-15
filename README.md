@@ -320,7 +320,7 @@ Similarly, to submit a form, add a `"formEnd"` flag to the last question in the 
 
 ### Examples
 
-The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to properly structure the form data. Feel free to use the [sample form](https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link) to test the script yourself.
+The [fixed.json](./cypress/fixtures/forms/fixed.json) and [probabilistic.json](./cypress/fixtures/forms/probabilistic.json) files included in this repository should give you a good idea on how to properly structure the form data. Feel free to use [this](https://docs.google.com/forms/d/e/1FAIpQLSfZOj6_2ryFbvfrzTyCUT6prKCP7blBJpq9SIJnwPFl4X9hRQ/viewform?usp=sf_link) sample form to test the script yourself.
 
 ## Usage
 
