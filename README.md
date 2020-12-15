@@ -141,7 +141,7 @@ The format of the questions to be included in the JSON file will vary depending 
     }
     ```
 
-- **Fixed and Probabilistic Fill Patterns:** Can be filled out from a predefined fixed value, based on predefined probabilities assigned to the available options, or, in the case of grid-type questions, a combination of both. For probability-based filling, all options must be listed followed by their respective probabilities so that the sum of the `"probabilities"` array equals **1.0**. The following JSON attribute, for example, ensures that there is a 40% chance that the script will choose "Option 1", a 30% chance that it will choose "Option 2" a 20% chance that it will choose "Option 3", and a 10% chance that it will choose "Option 4":
+- **Fixed and Probabilistic Fill Patterns:** Can be filled out from a predefined fixed value, based on predefined probabilities assigned to the available options, or, in the case of grid-type questions, a combination of both. For probability-based filling, all options must be listed followed by their respective probabilities so that the sum of the `"probabilities"` array equals **1.0**. The following JSON attribute, for example, ensures that there is a 40% chance that the script will choose "Option 1", a 30% chance that it will choose "Option 2", a 20% chance that it will choose "Option 3", and a 10% chance that it will choose "Option 4":
 
   ```
   "answer": {
