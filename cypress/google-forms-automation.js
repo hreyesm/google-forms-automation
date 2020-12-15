@@ -123,7 +123,7 @@ export default class GoogleFormsAutomation {
 
   fillMultipleChoiceGrid(rows) {
     const choices = this.getMultipleChoiceGrid(rows);
-    const columns = this.mapColumns(rows.length);
+    const columns = this.mapColumns();
     rows.forEach((row, i) => {
       cy.contains(row.title)
         .parent()
@@ -143,7 +143,7 @@ export default class GoogleFormsAutomation {
 
   fillCheckboxGrid(rows) {
     const choices = this.getCheckboxGrid(rows);
-    const columns = this.mapColumns(rows.length);
+    const columns = this.mapColumns();
     rows.forEach((row, i) => {
       cy.contains(row.title)
         .parent()
@@ -163,21 +163,21 @@ export default class GoogleFormsAutomation {
     return choices;
   }
 
-  mapColumns(n) {
+  mapColumns() {
     let cols = {};
     cy.get(this.selectors.gridColumnHeader)
       .children(this.selectors.gridCell)
       .then((children) => {
-        for (let i = 1; i <= n; i++) {
+        for (let i = 1; i <= children.length - 1; i++) {
           cols[children[i].outerText] = i;
         }
       });
     return cols;
   }
 
-  fillGrid(type, cols, c) {
+  fillGrid(type, columns, choice) {
     cy.get(this.selectors.gridCell)
-      .eq(cols[c])
+      .eq(columns[choice])
       .within(() => {
         this.click(type);
       });
