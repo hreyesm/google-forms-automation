@@ -30,7 +30,7 @@ JavaScript / Cypress script that fills out Google Forms automatically.
 
 ## Overview
 
-JavaScript / Cypress script that fills out Google Forms automatically. Useful for submitting the same form multiple times, either from fixed values or based on predefined probabilities.
+JavaScript / Cypress script that fills out Google Forms automatically. Useful for submitting the same form multiple times, either from fixed values or according to predefined probabilities.
 
 ### Features
 
