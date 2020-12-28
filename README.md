@@ -89,7 +89,7 @@ The general structure of a JSON file supported by the script looks like the foll
 }
 ```
 
-For forms to submit successfully, JSON files must be formatted according to the guidelines below.
+For the forms to be submitted correctly, JSON files must be formatted according to the guidelines below.
 
 #### URL
 
