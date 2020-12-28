@@ -5,7 +5,7 @@ export default class GoogleFormsAutomation {
     });
   }
 
-  fillForm(fixture) {
+  fillForm = (fixture) => {
     cy.fixture(fixture).then((form) => {
       cy.visit(form.url);
       form.questions.forEach((question) => {
@@ -24,9 +24,9 @@ export default class GoogleFormsAutomation {
         }
       });
     });
-  }
+  };
 
-  fillQuestion(question) {
+  fillQuestion = (question) => {
     switch (question.type) {
       case "shortAnswer":
       case "date":
@@ -52,17 +52,17 @@ export default class GoogleFormsAutomation {
         this.fillCheckboxGrid(question.rows);
         break;
     }
-  }
+  };
 
-  click(type) {
+  click = (type) => {
     cy.get(this.selectors[type]).click();
-  }
+  };
 
-  type(type, value) {
+  type = (type, value) => {
     cy.get(this.selectors[type]).type(value);
-  }
+  };
 
-  fillTime(input) {
+  fillTime = (input) => {
     const time = input.split(":");
     cy.get(this.selectors.timeInputs)
       .children(this.selectors.timeNumber)
@@ -71,16 +71,16 @@ export default class GoogleFormsAutomation {
           this.type("input", time[i]);
         });
       });
-  }
+  };
 
-  fillMultipleChoice(answer) {
+  fillMultipleChoice = (answer) => {
     const choice = this.getMultipleChoice(answer);
     cy.contains(choice).within(() => {
       this.click("multipleChoice");
     });
-  }
+  };
 
-  getMultipleChoice(answer) {
+  getMultipleChoice = (answer) => {
     if (answer.pattern == "probabilistic") {
       let s = 0;
       const options = answer.options;
@@ -96,18 +96,18 @@ export default class GoogleFormsAutomation {
     } else if (answer.pattern == "fixed") {
       return answer.choice;
     }
-  }
+  };
 
-  fillCheckboxes(answer) {
+  fillCheckboxes = (answer) => {
     const choices = this.getCheckboxes(answer);
     choices.forEach((choice) => {
       cy.contains(choice).within(() => {
         this.click("checkbox");
       });
     });
-  }
+  };
 
-  getCheckboxes(answer) {
+  getCheckboxes = (answer) => {
     if (answer.pattern == "probabilistic") {
       let options = [];
       const probabilities = answer.probabilities;
@@ -119,9 +119,9 @@ export default class GoogleFormsAutomation {
     } else if (answer.pattern == "fixed") {
       return answer.choice;
     }
-  }
+  };
 
-  fillMultipleChoiceGrid(rows) {
+  fillMultipleChoiceGrid = (rows) => {
     const choices = this.getMultipleChoiceGrid(rows);
     const columns = this.mapColumns();
     rows.forEach((row, i) => {
@@ -131,17 +131,17 @@ export default class GoogleFormsAutomation {
           this.fillGrid("multipleChoice", columns, choices[i]);
         });
     });
-  }
+  };
 
-  getMultipleChoiceGrid(rows) {
+  getMultipleChoiceGrid = (rows) => {
     let choices = [];
     rows.forEach((row) => {
       choices.push(this.getMultipleChoice(row.answer));
     });
     return choices;
-  }
+  };
 
-  fillCheckboxGrid(rows) {
+  fillCheckboxGrid = (rows) => {
     const choices = this.getCheckboxGrid(rows);
     const columns = this.mapColumns();
     rows.forEach((row, i) => {
@@ -153,17 +153,17 @@ export default class GoogleFormsAutomation {
           });
         });
     });
-  }
+  };
 
-  getCheckboxGrid(rows) {
+  getCheckboxGrid = (rows) => {
     let choices = [];
     rows.forEach((row) => {
       choices.push(this.getCheckboxes(row.answer));
     });
     return choices;
-  }
+  };
 
-  mapColumns() {
+  mapColumns = () => {
     let cols = {};
     cy.get(this.selectors.gridColumnHeader)
       .children(this.selectors.gridCell)
@@ -173,21 +173,21 @@ export default class GoogleFormsAutomation {
         }
       });
     return cols;
-  }
+  };
 
-  fillGrid(type, columns, choice) {
+  fillGrid = (type, columns, choice) => {
     cy.get(this.selectors.gridCell)
       .eq(columns[choice])
       .within(() => {
         this.click(type);
       });
-  }
+  };
 
-  nextSection() {
+  nextSection = () => {
     cy.get(this.selectors.buttons)
       .children()
       .then((children) => {
         cy.get(children[children.length - 1]).click();
       });
-  }
+  };
 }

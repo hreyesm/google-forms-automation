@@ -18,6 +18,6 @@
   "homepage": "https://github.com/hreyesm/google-forms-automation#readme",
   "dependencies": {},
   "devDependencies": {
-    "cypress": "^6.1.0"
+    "cypress": "^6.2.0"
   }
 }
