@@ -67,7 +67,7 @@ After cloning the repository, go to the root directory and enter the command `np
 
 ### JSON File Location
 
-JSON files corresponding to the forms to be submitted will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as in the directory tree below; otherwise the script will not recognize them.
+JSON files corresponding to the forms to be submitted will only be processed if they are inside the [forms](./cypress/fixtures/forms) subdirectory, as shown in the directory tree below; otherwise the script will not be able to find them.
 
 ```
 📦 google-forms-automation
@@ -89,7 +89,7 @@ The general structure of a JSON file supported by the script looks like the foll
 }
 ```
 
-For a JSON file to work properly, it must be formatted according to the guidelines below.
+For forms to submit successfully, JSON files must be formatted according to the guidelines below.
 
 #### URL
 
@@ -151,148 +151,148 @@ The format of the questions to be included in the JSON file will vary depending 
   }
   ```
   
-The following question types support fixed and probabilistic fill patterns:
+  The following question types support fixed and probabilistic fill patterns:
 
-  - Multiple Choice
+    - Multiple Choice
 
-    - Fixed Fill Pattern
+      - Fixed Fill Pattern
 
-      ```
-      {
-        "title": "Question title",
-        "type": "multipleChoice",
-        "answer": {
-          "pattern": "fixed",
-          "choice": "Option to select"
-        }
-      }
-      ```
-
-    - Probabilistic Fill Pattern
-
-      ```
-      {
-        "title": "Question title",
-        "type": "multipleChoice",
-        "answer": {
-          "pattern": "probabilistic",
-          "options": ["Option 1", ..., "Option N"],
-          "probabilities": [P("Option 1"), ..., P("Option N")]
-        }
-      }
-      ```
-
-  - Linear Scale
-
-    - Fixed Fill Pattern
-
-      ```
-      {
-        "title": "Question title",
-        "type": "linearScale",
-        "answer": {
-          "pattern": "fixed",
-          "choice": "Option to select"
-        }
-      }
-      ```
-
-    - Probabilistic Fill Pattern
-
-      ```
-      {
-        "title": "Question title",
-        "type": "linearScale",
-        "answer": {
-          "pattern": "probabilistic",
-          "options": ["Option 1", ..., "Option N"],
-          "probabilities": [P("Option 1"), ..., P("Option N")]
-        }
-      }
-      ```
-
-  - Checkboxes
-
-    - Fixed Fill Pattern
-
-      ```
-      {
-        "title": "Question title",
-        "type": "checkboxes",
-        "answer": {
-          "pattern": "fixed",
-          "choice": ["Option to select 1", ..., "Option to select N"]
-        }
-      }
-      ```
-
-    - Probabilistic Fill Pattern
-
-      ```
-      {
-        "title": "Question title",
-        "type": "checkboxes",
-        "answer": {
-          "pattern": "probabilistic",
-          "options": ["Option 1", ..., "Option N"],
-          "probabilities": [P("Option 1"), ..., P("Option N")]
-        }
-      }
-      ```
-
-  - Multiple Choice Grid (Fixed and Probabilistic Fill Patterns)
-
-    ```
-    {
-      "title": "Question title",
-      "type": "multipleChoiceGrid",
-      "rows": [
+        ```
         {
-          "title": "Row 1",
+          "title": "Question title",
+          "type": "multipleChoice",
           "answer": {
             "pattern": "fixed",
-            "choice": "Column to select"
-          }
-        },
-        ...,
-        {
-          "title": "Row N",
-          "answer": {
-            "pattern": "probabilistic",
-            "options": ["Column 1", ..., "Column N"],
-            "probabilities": [P("Column 1"), ..., P("Column N")]
+            "choice": "Option to select"
           }
         }
-      ]
-    }
-    ```
+        ```
 
-  - Checkbox Grid (Fixed and Probabilistic Fill Patterns)
+      - Probabilistic Fill Pattern
 
-    ```
-    {
-      "title": "Question title",
-      "type": "checkboxGrid",
-      "rows": [
+        ```
         {
-          "title": "Row 1",
+          "title": "Question title",
+          "type": "multipleChoice",
+          "answer": {
+            "pattern": "probabilistic",
+            "options": ["Option 1", ..., "Option N"],
+            "probabilities": [P("Option 1"), ..., P("Option N")]
+          }
+        }
+        ```
+
+    - Linear Scale
+
+      - Fixed Fill Pattern
+
+        ```
+        {
+          "title": "Question title",
+          "type": "linearScale",
           "answer": {
             "pattern": "fixed",
-            "choice": ["Column to select"]
-          }
-        },
-        ...,
-        {
-          "title": "Row N",
-          "answer": {
-            "pattern": "probabilistic",
-            "options": ["Column 1", ..., "Column N"],
-            "probabilities": [P("Column 1"), ..., P("Column N")]
+            "choice": "Option to select"
           }
         }
-      ]
-    }
-    ```
+        ```
+
+      - Probabilistic Fill Pattern
+
+        ```
+        {
+          "title": "Question title",
+          "type": "linearScale",
+          "answer": {
+            "pattern": "probabilistic",
+            "options": ["Option 1", ..., "Option N"],
+            "probabilities": [P("Option 1"), ..., P("Option N")]
+          }
+        }
+        ```
+
+    - Checkboxes
+
+      - Fixed Fill Pattern
+
+        ```
+        {
+          "title": "Question title",
+          "type": "checkboxes",
+          "answer": {
+            "pattern": "fixed",
+            "choice": ["Option to select 1", ..., "Option to select N"]
+          }
+        }
+        ```
+
+      - Probabilistic Fill Pattern
+
+        ```
+        {
+          "title": "Question title",
+          "type": "checkboxes",
+          "answer": {
+            "pattern": "probabilistic",
+            "options": ["Option 1", ..., "Option N"],
+            "probabilities": [P("Option 1"), ..., P("Option N")]
+          }
+        }
+        ```
+
+    - Multiple Choice Grid (Fixed and Probabilistic Fill Patterns)
+
+      ```
+      {
+        "title": "Question title",
+        "type": "multipleChoiceGrid",
+        "rows": [
+          {
+            "title": "Row 1",
+            "answer": {
+              "pattern": "fixed",
+              "choice": "Column to select"
+            }
+          },
+          ...,
+          {
+            "title": "Row N",
+            "answer": {
+              "pattern": "probabilistic",
+              "options": ["Column 1", ..., "Column N"],
+              "probabilities": [P("Column 1"), ..., P("Column N")]
+            }
+          }
+        ]
+      }
+      ```
+
+    - Checkbox Grid (Fixed and Probabilistic Fill Patterns)
+
+      ```
+      {
+        "title": "Question title",
+        "type": "checkboxGrid",
+        "rows": [
+          {
+            "title": "Row 1",
+            "answer": {
+              "pattern": "fixed",
+              "choice": ["Column to select"]
+            }
+          },
+          ...,
+          {
+            "title": "Row N",
+            "answer": {
+              "pattern": "probabilistic",
+              "options": ["Column 1", ..., "Column N"],
+              "probabilities": [P("Column 1"), ..., P("Column N")]
+            }
+          }
+        ]
+      }
+      ```
 
 #### Section and Form End Flags
 
